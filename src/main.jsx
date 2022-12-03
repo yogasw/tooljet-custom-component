@@ -6,8 +6,8 @@ import {TextareaAutosize} from 'https://cdn.skypack.dev/@material-ui/core';
 
 const App = () => {
     const [data, setData] = useState({title: 'Hi! There', buttonText: 'Update Title'});
-    const updateData = (data) => {
-        setData(data);
+    const updateData = (newData) => {
+        setData({...data,...newData});
         console.log("update data", data)
     }
     const runQuery = (query) => {
@@ -16,8 +16,11 @@ const App = () => {
 
     return (
         <div>
-            <h2>Data : </h2>
+            <h2>Input Data : </h2>
             <TextareaAutosize
+                style={{
+                    width: "100%",
+                }}
                 placeholder="Input Data"
                 value={JSON.stringify(data, null, 2)}
                 onChange={(e) => {
@@ -25,7 +28,7 @@ const App = () => {
                     console.log(e.target.value)
                     try {
                         setData(JSON.parse(e.target.value))
-                    }catch (e) {
+                    } catch (e) {
                         setData(e.target?.value)
                     }
                 }}
@@ -42,13 +45,12 @@ const App = () => {
             <h2>Dynamic Input</h2>
 
             <DynamicInput
-                updateData={(data)=>{
+                updateData={(data) => {
                     updateData(data)
                 }}
                 data={data}
                 runQuery={runQuery}
             />
-
 
 
         </div>
