@@ -1,0 +1,22 @@
+{
+  "name": "tooljet-custom-component",
+  "version": "1.0.0",
+  "description": "Tooljet Custom Component",
+  "main": "index.js",
+  "scripts": {
+    "start": "snowpack dev",
+    "build": "snowpack build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "snowpack",
+    "skypack",
+    "tooljet"
+  ],
+  "author": "Yoga Setiawan (ariokidev@gmail.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "snowpack": "^3.0.11"
+  }
+}
