@@ -16,7 +16,7 @@ const App = () => {
 
     return (
         <div>
-            <h2>Input Data :</h2>
+            <h2>Input Data:</h2>
             <TextareaAutosize
                 style={{
                     width: "100%",
