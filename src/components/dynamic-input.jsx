@@ -43,6 +43,11 @@ const DynamicInput = ({data, updateData, runQuery}) => {
     const handleAddClick = () => {
         setInputList([...inputList(), {key: "", value: ""}]);
     };
+    useEffect(() => {
+        updateData({reload: false});
+    }, [data?.reload === true])
+
+    if (data?.reload === true) return <></>
 
     return (<div>
         <Typography style={{marginLeft: 10}} variant="caption" display="block" gutterBottom>
@@ -125,13 +130,10 @@ const styles = {
     }
 };
 
-// for development
-export default DynamicInput;
 
-// //for toolJet
+// for toolJet
 // import ReactDOM from 'https://cdn.skypack.dev/react-dom';
-//
+
 // const ConnectedComponent = Tooljet.connectComponent(DynamicInput);
 // ReactDOM.render(<ConnectedComponent/>, document.body);
-
-
+export default DynamicInput;

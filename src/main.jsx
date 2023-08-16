@@ -1,11 +1,13 @@
 import React, {useState} from 'https://cdn.skypack.dev/react';
 import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 import DynamicInput from "./components/dynamic-input";
+import DateTimeLocal from "./components/date-time-local";
 import MyCustomComponent from "./components/my-custom-component";
 import {TextareaAutosize} from 'https://cdn.skypack.dev/@material-ui/core';
+import ReactAutocompleteInput from "./components/react-autocomplete-input";
 
 const App = () => {
-    const [data, setData] = useState({title: 'Hi! There', buttonText: 'Update Title'});
+    const [data, setData] = useState({"value":"{group=~\"qismo_elixir_stable|qismo_elixir_stable_longtimeout|qismo_php_stable\"} |=\"{{ROOM_ID}}\"","list":[{"id":"USER_ID","display":"USER_ID"},{"id":"ROOM_ID","display":"ROOM_ID"},{"id":"AGENT_ID","display":"AGENT_ID"},{"id":"APP_CODE","display":"APP_CODE"}]});
     const updateData = (newData) => {
         setData({...data,...newData});
         console.log("update data", data)
@@ -52,6 +54,20 @@ const App = () => {
                 runQuery={runQuery}
             />
 
+            <DateTimeLocal
+                updateData={(data) => {
+                    updateData(data)
+                }}
+                data={data}
+                runQuery={runQuery}
+            />
+            <ReactAutocompleteInput
+                updateData={(data) => {
+                    updateData(data)
+                }}
+                data={data}
+                runQuery={runQuery}
+            />
 
         </div>
     );
