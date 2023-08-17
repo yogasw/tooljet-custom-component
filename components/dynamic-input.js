@@ -47,7 +47,7 @@ const DynamicInput = ({data, updateData, runQuery}) => {
     gutterBottom: true
   }, "*key only a-z, 0-9 and _"), inputList()?.map((x, i) => {
     return /* @__PURE__ */ React.createElement("div", {
-      style: styles.box,
+      style: stylesDynamicInput.box,
       key: i
     }, /* @__PURE__ */ React.createElement(TextField, {
       variant: "outlined",
@@ -82,7 +82,7 @@ const DynamicInput = ({data, updateData, runQuery}) => {
       value: x.value,
       onChange: (e) => handleInputChange(e, i)
     }), /* @__PURE__ */ React.createElement("div", {
-      style: styles.btn_box
+      style: stylesDynamicInput.btn_box
     }, inputList().length !== 1 && /* @__PURE__ */ React.createElement(FiTrash, {
       style: {
         marginRight: "5px"
@@ -97,7 +97,7 @@ const DynamicInput = ({data, updateData, runQuery}) => {
     style: {marginTop: 20, marginLeft: 10}
   }, JSON.stringify(inputList)));
 };
-const styles = {
+const stylesDynamicInput = {
   box: {
     marginBottom: "10px",
     marginTop: "10px",

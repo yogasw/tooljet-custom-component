@@ -1,5 +1,5 @@
 import * as React from "https://esm.sh/react";
-const classes = {
+const styleDateTime = {
   root: {
     display: "flex",
     flexWrap: "wrap"
@@ -26,11 +26,11 @@ const DateTimeLocal = ({data, updateData, runQuery}) => {
     setDatetime(dt);
   }
   return /* @__PURE__ */ React.createElement("div", {
-    className: classes.root
+    className: styleDateTime.root
   }, /* @__PURE__ */ React.createElement("input", {
     value: (datetime || "").toString(),
     onChange: handleChange,
-    style: classes.dateTimeInput,
+    style: styleDateTime.dateTimeInput,
     type: "datetime-local",
     step: "1",
     name: "input-date-time"
