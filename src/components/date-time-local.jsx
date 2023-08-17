@@ -1,4 +1,4 @@
-import React from 'https://cdn.skypack.dev/react';
+import * as React from 'https://esm.sh/react';
 
 const classes = {
     root: {
@@ -11,17 +11,19 @@ const classes = {
         borderWidth: 0,
     },
 };
+const {useState, useEffect} = React;
 
 const DateTimeLocal = ({data, updateData, runQuery}) => {
-    const [datetime, setDatetime] = React.useState();
+    const [datetime, setDatetime] = useState();
 
-    React.useEffect(async () => {
+    useEffect(() => {
         if (datetime) {
-            await updateData({value: datetime})
+            updateData({value: datetime})
             runQuery("convert_custom_date_time")
         }
     }, datetime)
 
+    //
     function handleChange(ev) {
         if (!ev.target['validity'].valid) return;
         const dt = ev.target['value'];
@@ -42,11 +44,9 @@ const DateTimeLocal = ({data, updateData, runQuery}) => {
 }
 
 
-// //for toolJet
-// import ReactDOM from 'https://cdn.skypack.dev/react-dom';
-//
-// const ConnectedComponent = Tooljet.connectComponent(DateTimeLocal);
-// ReactDOM.render(<ConnectedComponent/>, document.body);
-
-
 export default DateTimeLocal
+
+// //for tooljet
+// import {createRoot} from 'https://esm.sh/react-dom@18.2.0';
+// const ConnectedComponent = Tooljet.connectComponent(DateTimeLocal);
+// createRoot(document.body).render(<ConnectedComponent/>);

@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from "https://cdn.skypack.dev/react";
-import {TextField, Typography} from "https://cdn.skypack.dev/@material-ui/core";
-import {FiPlus, FiTrash} from "https://cdn.skypack.dev/react-icons/fi";
+import * as React from 'https://esm.sh/react';
+import TextField from 'https://cdn.esm.sh/@mui/material/TextField';
+import Typography from 'https://cdn.esm.sh/@mui/material/Typography';
+import {FiPlus, FiTrash} from "https://cdn.esm.sh/react-icons/fi";
 
 const DynamicInput = ({data, updateData, runQuery}) => {
+    const {useEffect} = React;
     const ALPHA_NUMERIC_DASH_REGEX = /^[a-zA-Z0-9\_]+$/;
 
     const inputList = () => {
@@ -129,11 +131,9 @@ const styles = {
         marginRight: "10px"
     }
 };
-
-
-// for toolJet
-// import ReactDOM from 'https://cdn.skypack.dev/react-dom';
-
-// const ConnectedComponent = Tooljet.connectComponent(DynamicInput);
-// ReactDOM.render(<ConnectedComponent/>, document.body);
 export default DynamicInput;
+
+// //for tooljet
+// import {createRoot} from 'https://esm.sh/react-dom@18.2.0';
+// const ConnectedComponent = Tooljet.connectComponent(DateTimeLocal);
+// createRoot(document.body).render(<DynamicInput/>);

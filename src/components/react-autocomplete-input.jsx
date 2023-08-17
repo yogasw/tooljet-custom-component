@@ -1,6 +1,7 @@
-import React, {useState} from 'https://cdn.skypack.dev/react';
-import {Mention, MentionsInput} from "https://cdn.skypack.dev/react-mentions";
+import * as React from 'https://esm.sh/react';
+import {Mention, MentionsInput} from "https://esm.sh/react-mentions";
 
+const {useState, useEffect} = React;
 const defaultStyle = {
     control: {
         backgroundColor: "#fff",
@@ -110,18 +111,18 @@ const ReactAutocompleteInput = ({data, updateData, runQuery}) => {
         setValue(event.target.value);
     };
 
-    // onAdd = id => {
-    //   console.log("added a new mention", id);
-    //   this.setState({ mentions: [...this.state.mentions, id] });
-    // };
+    const onAdd = id => {
+        console.log("added a new mention", id);
+        this.setState({mentions: [...this.state.mentions, id]});
+    };
 
-    React.useEffect(async () => {
+    useEffect(() => {
         if (value) {
-            await updateData({value: value})
+            updateData({value: value})
         }
     }, [value])
 
-    React.useEffect(async () => {
+    useEffect(() => {
         if (data?.value !== value) {
             setValue(data?.value)
         }
@@ -149,10 +150,9 @@ const ReactAutocompleteInput = ({data, updateData, runQuery}) => {
     );
 }
 
-// //for toolJet
-// import ReactDOM from 'https://cdn.skypack.dev/react-dom';
-//
-// const ConnectedComponent = Tooljet.connectComponent(ReactAutocompleteInput);
-// ReactDOM.render(<ConnectedComponent/>, document.body);
-
 export default ReactAutocompleteInput
+
+// //for tooljet
+// import {createRoot} from 'https://esm.sh/react-dom@18.2.0';
+// const ConnectedComponent = Tooljet.connectComponent(DateTimeLocal);
+// createRoot(document.body).render(<ReactAutocompleteInput/>);

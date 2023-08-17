@@ -1,5 +1,6 @@
-import React from 'https://cdn.skypack.dev/react';
-import {Button, Container} from 'https://cdn.skypack.dev/@material-ui/core';
+import * as React from 'https://esm.sh/react';
+import Button from 'https://cdn.esm.sh/@mui/material/Button';
+import Container from 'https://cdn.esm.sh/@mui/material/Container';
 
 const MyCustomComponent = ({data, updateData, runQuery}) => (
     <Container>
@@ -16,9 +17,9 @@ const MyCustomComponent = ({data, updateData, runQuery}) => (
     </Container>
 );
 
-//for tooljet
 export default MyCustomComponent;
 
-// import ReactDOM from 'https://cdn.skypack.dev/react-dom';
+//for tooljet
+// import {createRoot} from 'https://esm.sh/react-dom@18.2.0';
 // const ConnectedComponent = Tooljet.connectComponent(MyCustomComponent);
-// ReactDOM.render(<ConnectedComponent />, document.body);
+// createRoot(document.body).render(<ConnectedComponent/>);
