@@ -8,6 +8,7 @@ import TextareaAutosize from 'https://cdn.esm.sh/@mui/material/TextareaAutosize'
 import ReactAutocompleteInput from "./components/react-autocomplete-input";
 import EsmSh from "./components/esm-sh";
 import Timer from "./components/timer";
+import RetejsBasic from "./components/retejs-basic";
 
 const App = () => {
 
@@ -34,6 +35,8 @@ const App = () => {
 
     return (
         <div>
+            <h1>Retejs Basic</h1>
+            <RetejsBasic/>
             <h1>ReactAutocompleteInput</h1>
             <ReactAutocompleteInput
                 updateData={(data) => {
