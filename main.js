@@ -7,6 +7,7 @@ import TextareaAutosize from "https://cdn.esm.sh/@mui/material/TextareaAutosize"
 import ReactAutocompleteInput from "./components/react-autocomplete-input.js";
 import EsmSh from "./components/esm-sh.js";
 import Timer from "./components/timer.js";
+import RetejsBasic from "./components/retejs-basic.js";
 const App = () => {
   const [data, setData] = React.useState({
     value: 'Example |="{{B}}"',
@@ -25,7 +26,7 @@ const App = () => {
   const runQuery = (query) => {
     console.log("run query", query);
   };
-  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "ReactAutocompleteInput"), /* @__PURE__ */ React.createElement(ReactAutocompleteInput, {
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "Retejs Basic"), /* @__PURE__ */ React.createElement(RetejsBasic, null), /* @__PURE__ */ React.createElement("h1", null, "ReactAutocompleteInput"), /* @__PURE__ */ React.createElement(ReactAutocompleteInput, {
     updateData: (data2) => {
       updateData(data2);
     },
