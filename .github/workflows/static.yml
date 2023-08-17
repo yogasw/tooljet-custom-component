@@ -34,6 +34,7 @@ jobs:
       - run: npm run build
       - name: Init new repo in dist folder and commit generated files
         run: |
+          ls -lah
           cd build
           git init
           git add -A
