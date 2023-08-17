@@ -56,7 +56,7 @@ const DynamicInput = ({data, updateData, runQuery}) => {
             *key only a-z, 0-9 and _
         </Typography>
         {inputList()?.map((x, i) => {
-            return (<div style={styles.box} key={i}>
+            return (<div style={stylesDynamicInput.box} key={i}>
                 <TextField
                     variant="outlined"
                     required={true}
@@ -92,7 +92,7 @@ const DynamicInput = ({data, updateData, runQuery}) => {
                     value={x.value}
                     onChange={(e) => handleInputChange(e, i)}
                 />
-                <div style={styles.btn_box}>
+                <div style={stylesDynamicInput.btn_box}>
                     {inputList().length !== 1 && (<FiTrash
                         style={{
                             marginRight: "5px",
@@ -109,7 +109,7 @@ const DynamicInput = ({data, updateData, runQuery}) => {
     </div>);
 };
 
-const styles = {
+const stylesDynamicInput = {
     box: {
         marginBottom: "10px",
         marginTop: "10px",
