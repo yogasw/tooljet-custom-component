@@ -4,11 +4,11 @@ import DynamicInput from "./components/dynamic-input";
 import DateTimeLocal from "./components/date-time-local";
 import MyCustomComponent from "./components/my-custom-component";
 import TextareaAutosize from 'https://cdn.esm.sh/@mui/material/TextareaAutosize';
-
 import ReactAutocompleteInput from "./components/react-autocomplete-input";
 import EsmSh from "./components/esm-sh";
 import Timer from "./components/timer";
 import RetejsBasic from "./components/retejs-basic";
+import PrimitivesDiagrams from "./components/primitives-diagrams";
 
 const App = () => {
 
@@ -35,6 +35,8 @@ const App = () => {
 
     return (
         <div>
+            <h1>Basic Primitives Diagrams for React</h1>
+            <PrimitivesDiagrams />
             <h1>Retejs Basic</h1>
             <RetejsBasic/>
             <h1>ReactAutocompleteInput</h1>
