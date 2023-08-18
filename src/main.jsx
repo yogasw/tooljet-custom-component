@@ -48,9 +48,6 @@ const App = () => {
     const runQuery = (query) => {
         console.log("run query", query)
     }
-    const MyComponent = () => {
-        return <h1>Hello Content!</h1>;
-    };
     return (
         <div>
             <h1>Chat Component with Tailwind Css</h1>
