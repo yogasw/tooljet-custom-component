@@ -10,7 +10,7 @@ import {
   GroupByType,
   LineType
 } from "https://esm.sh/basicprimitives";
-export const Head = () => /* @__PURE__ */ React.createElement("style", null, globalCss);
+export const HeadDiagram = () => /* @__PURE__ */ React.createElement("style", null, globalCssDiagram);
 class PrimitivesDiagrams extends Component {
   render() {
     const config = {
@@ -179,7 +179,7 @@ class PrimitivesDiagrams extends Component {
       highlightLinesWidth: 2,
       highlightLinesType: LineType.Solid
     };
-    return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(Head, null), /* @__PURE__ */ React.createElement("div", {
+    return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(HeadDiagram, null), /* @__PURE__ */ React.createElement("div", {
       className: "placeholder"
     }, /* @__PURE__ */ React.createElement(FamDiagram, {
       centerOnCursor: true,
@@ -187,8 +187,7 @@ class PrimitivesDiagrams extends Component {
     })));
   }
 }
-export default PrimitivesDiagrams;
-const globalCss = `.container {
+const globalCssDiagram = `.container {
     padding: 10px; }
 
 .placeholder {
@@ -677,3 +676,4 @@ const globalCss = `.container {
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center; }`;
+export default PrimitivesDiagrams;

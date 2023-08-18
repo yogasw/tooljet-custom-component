@@ -1,41 +1,9 @@
 import * as React from "https://esm.sh/react";
-const Head = () => /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("link", {
+const HeadTailwind = () => /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("link", {
   href: "https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css",
   rel: "stylesheet"
 }));
-const posts = [
-  {
-    id: 1,
-    title: "Boost your conversion rate",
-    href: "#",
-    description: "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
-    date: "Mar 16, 2020",
-    datetime: "2020-03-16",
-    category: {title: "Marketing", href: "#"},
-    author: {
-      name: "Michael Foster",
-      role: "Co-Founder / CTO",
-      href: "#",
-      imageUrl: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-    }
-  },
-  {
-    id: 1,
-    title: "Boost your conversion rate",
-    href: "#",
-    description: "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
-    date: "Mar 16, 2020",
-    datetime: "2020-03-16",
-    category: {title: "Marketing", href: "#"},
-    author: {
-      name: "Michael Foster",
-      role: "Co-Founder / CTO",
-      href: "#",
-      imageUrl: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-    }
-  }
-];
-const ChatWithTailwind = ({data, updateData, runQuery}) => /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(Head, null), /* @__PURE__ */ React.createElement("div", {
+const ChatWithTailwind = ({data, updateData, runQuery}) => /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(HeadTailwind, null), /* @__PURE__ */ React.createElement("div", {
   className: "flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 p-10"
 }, /* @__PURE__ */ React.createElement("div", {
   className: "flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden"
