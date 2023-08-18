@@ -11,7 +11,7 @@ import {
     LineType
 } from 'https://esm.sh/basicprimitives';
 
-export const Head = () => (
+export const HeadDiagram = () => (
     // <head>
     //     <meta charset="utf-8"/>
     //     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -19,7 +19,7 @@ export const Head = () => (
     //     <title>Fresh Portfolio</title>
     //     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
         <style>
-            {globalCss}
+            {globalCssDiagram}
         </style>
     // </head>
 );
@@ -185,7 +185,7 @@ class PrimitivesDiagrams  extends Component {
         };
 
         return <div>
-            <Head/>
+            <HeadDiagram/>
             <div className="placeholder">
                 <FamDiagram centerOnCursor={true} config={config}/>
             </div>
@@ -193,9 +193,7 @@ class PrimitivesDiagrams  extends Component {
     }
 }
 
-export default PrimitivesDiagrams;
-
-const globalCss = `.container {
+const globalCssDiagram = `.container {
     padding: 10px; }
 
 .placeholder {
@@ -684,3 +682,5 @@ const globalCss = `.container {
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center; }`
+
+export default PrimitivesDiagrams;
