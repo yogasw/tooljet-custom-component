@@ -12,6 +12,7 @@ import RetejsBasic from "./components/retejs-basic";
 import PrimitivesDiagrams from "./components/primitives-diagrams";
 import ChatWithTailwind from "./components/chat-with-tailwind";
 import ConversationHistory from "./components/conversation-history";
+import ReactFlowDiagram from "./components/react-flow-diagram";
 
 export const IFrame = ({
                            children,
@@ -664,6 +665,10 @@ const App = () => {
     }
     return (
         <div>
+            <h1>React Flow</h1>
+            <IFrame width="100%" height="400">
+                <ReactFlowDiagram/>
+            </IFrame>
             <h1>Conversation History</h1>
             <IFrame width="100%" height="400">
                 <ConversationHistory data={ChatHistory}/>
