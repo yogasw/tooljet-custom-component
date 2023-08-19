@@ -1,32 +1,29 @@
 import * as React from "https://cdn.jsdelivr.net/npm/react/+esm";
 import moment from "https://cdn.jsdelivr.net/npm/moment/+esm";
+import {LuFileJson2 as PlusSmIconSolid} from "https://cdn.jsdelivr.net/npm/react-icons/lu/+esm";
 const HeadConversationHistory = () => /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("link", {
   href: "https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css",
   rel: "stylesheet"
 }));
-const Left = ({message, date}) => {
+const Left = ({message}) => {
   return /* @__PURE__ */ React.createElement("div", {
-    className: "flex w-full mt-2 space-x-3 max-w-xs"
+    className: "flex w-full mt-2 space-x-3 max-w-2xl"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex-shrink-0 h-10 w-10 rounded-full"
   }, /* @__PURE__ */ React.createElement(AvatarBot, null)), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", {
     className: "bg-gray-300 p-3 rounded-r-lg rounded-bl-lg"
   }, /* @__PURE__ */ React.createElement("p", {
     className: "text-sm"
-  }, message)), /* @__PURE__ */ React.createElement("span", {
-    className: "text-xs text-gray-500 leading-none"
-  }, date)));
+  }, message))));
 };
-const Right = ({message, date}) => {
+const Right = ({message}) => {
   return /* @__PURE__ */ React.createElement("div", {
-    className: "flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end"
+    className: "flex w-full mt-2 space-x-3 max-w-2xl ml-auto justify-end"
   }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", {
     className: "bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg"
   }, /* @__PURE__ */ React.createElement("p", {
     className: "text-sm"
-  }, message)), /* @__PURE__ */ React.createElement("span", {
-    className: "text-xs text-gray-500 leading-none"
-  }, date)), /* @__PURE__ */ React.createElement("div", {
+  }, message))), /* @__PURE__ */ React.createElement("div", {
     className: "flex-shrink-0 h-10 w-10 rounded-full justify-end"
   }, /* @__PURE__ */ React.createElement(AvatarHuman, null)));
 };
@@ -36,20 +33,57 @@ const ConversationHistory = ({data, updateData, runQuery}) => /* @__PURE__ */ Re
   className: "flex flex-col flex-grow w-full bg-white shadow-xl rounded-lg overflow-hidden"
 }, /* @__PURE__ */ React.createElement("div", {
   className: "flex flex-col flex-grow h-0 p-4 overflow-auto"
-}, data?.interactions?.map((d) => {
+}, data?.interactions?.toReversed()?.map((d, n) => {
   const {queryText, fulfillmentText} = d.v2Response.queryResult;
   let mStartTime = moment.utc(d.responseTime);
   mStartTime.utcOffset("+07:00");
+  let bg = {};
+  if (n % 2 === 0) {
+    bg = {backgroundColor: "#f3f4f6"};
+  }
   const fStartTime = mStartTime.format("YYYY-MM-DD HH:mm:ss");
-  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(Left, {
-    message: fulfillmentText,
-    date: fStartTime
-  }), /* @__PURE__ */ React.createElement(Right, {
-    message: queryText,
-    date: fStartTime
+  return /* @__PURE__ */ React.createElement("div", {
+    style: bg,
+    className: "p-2 rounded"
+  }, /* @__PURE__ */ React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-end"
+    }
+  }, /* @__PURE__ */ React.createElement("div", {
+    style: {
+      flexDirection: "row",
+      flex: 1
+    }
+  }, /* @__PURE__ */ React.createElement(Left, {
+    message: fulfillmentText
+  })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", {
+    className: "text-xs text-gray-500 leading-none"
+  }, fStartTime), /* @__PURE__ */ React.createElement("div", {
+    className: "p-3"
+  }, /* @__PURE__ */ React.createElement("button", {
+    type: "button",
+    className: "m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+  }, /* @__PURE__ */ React.createElement(PlusSmIconSolid, {
+    className: "h-5 w-5",
+    "aria-hidden": "true"
+  })), /* @__PURE__ */ React.createElement("button", {
+    type: "button",
+    className: "m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+  }, /* @__PURE__ */ React.createElement(PlusSmIconSolid, {
+    className: "h-5 w-5",
+    "aria-hidden": "true"
+  })), /* @__PURE__ */ React.createElement("button", {
+    type: "button",
+    className: "m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+  }, /* @__PURE__ */ React.createElement(PlusSmIconSolid, {
+    className: "h-5 w-5",
+    "aria-hidden": "true"
+  }))))), /* @__PURE__ */ React.createElement(Right, {
+    message: queryText
   }));
 })))));
-export default ConversationHistory;
 const AvatarBot = (props) => /* @__PURE__ */ React.createElement("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   width: 30,
@@ -337,3 +371,4 @@ const AvatarHuman = (props) => /* @__PURE__ */ React.createElement("svg", {
   fill: "#a76c74",
   d: "M4.951 25.049c0.132 0.034 0.229 0.112 0.293 0.234 -0.132 -0.034 -0.229 -0.112 -0.293 -0.234Z"
 })));
+export default ConversationHistory;
