@@ -1,6 +1,6 @@
 import * as React from 'https://cdn.jsdelivr.net/npm/react/+esm';
 import moment from 'https://cdn.jsdelivr.net/npm/moment/+esm';
-import { LuFileJson2 as PlusSmIconSolid } from "https://cdn.jsdelivr.net/npm/react-icons/lu/+esm";
+import { LuFileJson2 } from "https://cdn.jsdelivr.net/npm/react-icons/lu/+esm";
 
 const HeadConversationHistory = () => (
     <head>
@@ -66,13 +66,13 @@ const ConversationHistory = ({data, updateData, runQuery}) => (
                                             <span className="text-xs text-gray-500 leading-none">{fStartTime}</span>
                                             <div className={"p-3"}>
                                                 <button type="button" className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-                                                    <PlusSmIconSolid className="h-5 w-5" aria-hidden="true" />
+                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true" />
                                                 </button>
                                                 <button type="button" className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-                                                    <PlusSmIconSolid className="h-5 w-5" aria-hidden="true" />
+                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true" />
                                                 </button>
                                                 <button type="button" className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-                                                    <PlusSmIconSolid className="h-5 w-5" aria-hidden="true" />
+                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true" />
                                                 </button>
                                             </div>
                                         </div>
