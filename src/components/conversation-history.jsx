@@ -1,5 +1,6 @@
 import * as React from 'https://cdn.jsdelivr.net/npm/react/+esm';
 import moment from 'https://cdn.jsdelivr.net/npm/moment/+esm';
+import { LuFileJson2 as PlusSmIconSolid } from "https://cdn.jsdelivr.net/npm/react-icons/lu/+esm";
 
 const HeadConversationHistory = () => (
     <head>
@@ -7,8 +8,8 @@ const HeadConversationHistory = () => (
     </head>
 );
 
-const Left = ({message, date}) => {
-    return <div className="flex w-full mt-2 space-x-3 max-w-xs">
+const Left = ({message}) => {
+    return <div className="flex w-full mt-2 space-x-3 max-w-2xl">
         <div className="flex-shrink-0 h-10 w-10 rounded-full">
             <AvatarBot/>
         </div>
@@ -16,17 +17,15 @@ const Left = ({message, date}) => {
             <div className="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
                 <p className="text-sm">{message}</p>
             </div>
-            <span className="text-xs text-gray-500 leading-none">{date}</span>
         </div>
     </div>
 }
-const Right = ({message, date}) => {
-    return <div className="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
+const Right = ({message}) => {
+    return <div className="flex w-full mt-2 space-x-3 max-w-2xl ml-auto justify-end">
         <div>
             <div className="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
                 <p className="text-sm">{message}</p>
             </div>
-            <span className="text-xs text-gray-500 leading-none">{date}</span>
         </div>
         <div className="flex-shrink-0 h-10 w-10 rounded-full justify-end">
             <AvatarHuman/>
@@ -40,15 +39,45 @@ const ConversationHistory = ({data, updateData, runQuery}) => (
             <div className="flex flex-col flex-grow w-full bg-white shadow-xl rounded-lg overflow-hidden">
                 <div className="flex flex-col flex-grow h-0 p-4 overflow-auto">
                     {
-                        data?.interactions?.map((d) => {
+                        data?.interactions?.toReversed()?.map((d, n) => {
                             const {queryText, fulfillmentText} = d.v2Response.queryResult
                             let mStartTime = moment.utc(d.responseTime)
                             mStartTime.utcOffset('+07:00');
+                            let bg = {}
+                            if (n % 2 === 0) {
+                                bg = {backgroundColor: "#f3f4f6"}
+                            }
                             const fStartTime = mStartTime.format('YYYY-MM-DD HH:mm:ss');
                             return (
-                                <div>
-                                    <Left message={fulfillmentText} date={fStartTime}/>
-                                    <Right message={queryText} date={fStartTime}/>
+                                <div style={bg} className={"p-2 rounded"}>
+                                    <div style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        justifyContent: "flex-end",
+                                    }}>
+
+                                        <div style={{
+                                            flexDirection: "row",
+                                            flex: 1
+                                        }}>
+                                            <Left message={fulfillmentText}/>
+                                        </div>
+                                        <div >
+                                            <span className="text-xs text-gray-500 leading-none">{fStartTime}</span>
+                                            <div className={"p-3"}>
+                                                <button type="button" className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                                                    <PlusSmIconSolid className="h-5 w-5" aria-hidden="true" />
+                                                </button>
+                                                <button type="button" className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                                                    <PlusSmIconSolid className="h-5 w-5" aria-hidden="true" />
+                                                </button>
+                                                <button type="button" className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                                                    <PlusSmIconSolid className="h-5 w-5" aria-hidden="true" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <Right message={queryText}/>
                                 </div>
                             )
                         })
@@ -59,14 +88,6 @@ const ConversationHistory = ({data, updateData, runQuery}) => (
         </div>
     </div>
 );
-
-export default ConversationHistory;
-
-// //for tooljet
-// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
-// const ConnectedComponent = Tooljet.connectComponent(ConversationHistory);
-// createRoot(document.body).render(<ConnectedComponent/>);
-
 
 const AvatarBot = (props) => (
     <svg
@@ -431,3 +452,11 @@ const AvatarHuman = (props) => (
         </g>
     </svg>
 );
+
+export default ConversationHistory;
+
+// //for tooljet
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
+// const ConnectedComponent = Tooljet.connectComponent(ConversationHistory);
+// createRoot(document.body).render(<ConnectedComponent/>);
+//
