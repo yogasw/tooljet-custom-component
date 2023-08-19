@@ -12,6 +12,7 @@ import RetejsBasic from "./components/retejs-basic.js";
 import PrimitivesDiagrams from "./components/primitives-diagrams.js";
 import ChatWithTailwind from "./components/chat-with-tailwind.js";
 import ConversationHistory from "./components/conversation-history.js";
+import ReactFlowDiagram from "./components/react-flow-diagram.js";
 export const IFrame = ({
   children,
   ...props
@@ -653,7 +654,10 @@ const App = () => {
   const runQuery = (query) => {
     console.log("run query", query);
   };
-  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "Conversation History"), /* @__PURE__ */ React.createElement(IFrame, {
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "React Flow"), /* @__PURE__ */ React.createElement(IFrame, {
+    width: "100%",
+    height: "400"
+  }, /* @__PURE__ */ React.createElement(ReactFlowDiagram, null)), /* @__PURE__ */ React.createElement("h1", null, "Conversation History"), /* @__PURE__ */ React.createElement(IFrame, {
     width: "100%",
     height: "400"
   }, /* @__PURE__ */ React.createElement(ConversationHistory, {
