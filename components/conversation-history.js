@@ -1,6 +1,6 @@
 import * as React from "https://cdn.jsdelivr.net/npm/react/+esm";
 import moment from "https://cdn.jsdelivr.net/npm/moment/+esm";
-import {LuFileJson2 as PlusSmIconSolid} from "https://cdn.jsdelivr.net/npm/react-icons/lu/+esm";
+import {LuFileJson2} from "https://cdn.jsdelivr.net/npm/react-icons/lu/+esm";
 const HeadConversationHistory = () => /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("link", {
   href: "https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css",
   rel: "stylesheet"
@@ -65,19 +65,19 @@ const ConversationHistory = ({data, updateData, runQuery}) => /* @__PURE__ */ Re
   }, /* @__PURE__ */ React.createElement("button", {
     type: "button",
     className: "m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
-  }, /* @__PURE__ */ React.createElement(PlusSmIconSolid, {
+  }, /* @__PURE__ */ React.createElement(LuFileJson2, {
     className: "h-5 w-5",
     "aria-hidden": "true"
   })), /* @__PURE__ */ React.createElement("button", {
     type: "button",
     className: "m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
-  }, /* @__PURE__ */ React.createElement(PlusSmIconSolid, {
+  }, /* @__PURE__ */ React.createElement(LuFileJson2, {
     className: "h-5 w-5",
     "aria-hidden": "true"
   })), /* @__PURE__ */ React.createElement("button", {
     type: "button",
     className: "m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
-  }, /* @__PURE__ */ React.createElement(PlusSmIconSolid, {
+  }, /* @__PURE__ */ React.createElement(LuFileJson2, {
     className: "h-5 w-5",
     "aria-hidden": "true"
   }))))), /* @__PURE__ */ React.createElement(Right, {
