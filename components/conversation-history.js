@@ -1,5 +1,5 @@
-import * as React from "https://esm.sh/react";
-import moment from "https://esm.sh/moment";
+import * as React from "https://cdn.jsdelivr.net/npm/react/+esm";
+import moment from "https://cdn.jsdelivr.net/npm/moment/+esm";
 const HeadConversationHistory = () => /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("link", {
   href: "https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css",
   rel: "stylesheet"
@@ -49,6 +49,7 @@ const ConversationHistory = ({data, updateData, runQuery}) => /* @__PURE__ */ Re
     date: fStartTime
   }));
 })))));
+export default ConversationHistory;
 const AvatarBot = (props) => /* @__PURE__ */ React.createElement("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   width: 30,
@@ -336,4 +337,3 @@ const AvatarHuman = (props) => /* @__PURE__ */ React.createElement("svg", {
   fill: "#a76c74",
   d: "M4.951 25.049c0.132 0.034 0.229 0.112 0.293 0.234 -0.132 -0.034 -0.229 -0.112 -0.293 -0.234Z"
 })));
-export default ConversationHistory;
