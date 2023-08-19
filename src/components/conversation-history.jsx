@@ -1,5 +1,5 @@
-import * as React from 'https://esm.sh/react';
-import moment from 'https://esm.sh/moment';
+import * as React from 'https://cdn.jsdelivr.net/npm/react/+esm';
+import moment from 'https://cdn.jsdelivr.net/npm/moment/+esm';
 
 const HeadConversationHistory = () => (
     <head>
@@ -59,6 +59,15 @@ const ConversationHistory = ({data, updateData, runQuery}) => (
         </div>
     </div>
 );
+
+export default ConversationHistory;
+
+// //for tooljet
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
+// const ConnectedComponent = Tooljet.connectComponent(ConversationHistory);
+// createRoot(document.body).render(<ConnectedComponent/>);
+
+
 const AvatarBot = (props) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -422,10 +431,3 @@ const AvatarHuman = (props) => (
         </g>
     </svg>
 );
-
-
-export default ConversationHistory;
-//for tooljet
-// import {createRoot} from 'https://esm.sh/react-dom@18.2.0';
-// const ConnectedComponent = Tooljet.connectComponent(MyCustomComponent);
-// createRoot(document.body).render(<ConnectedComponent/>);
