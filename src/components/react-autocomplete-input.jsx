@@ -1,5 +1,5 @@
-import * as React from 'https://esm.sh/react';
-import {Mention, MentionsInput} from "https://esm.sh/react-mentions";
+import * as React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+import {Mention, MentionsInput} from "https://cdn.jsdelivr.net/npm/react-mentions/+esm";
 
 const {useState, useEffect} = React;
 const defaultStyle = {
@@ -153,6 +153,6 @@ const ReactAutocompleteInput = ({data, updateData, runQuery}) => {
 export default ReactAutocompleteInput
 
 // //for tooljet
-// import {createRoot} from 'https://esm.sh/react-dom@18.2.0';
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom';
 // const ConnectedComponent = Tooljet.connectComponent(DateTimeLocal);
 // createRoot(document.body).render(<ReactAutocompleteInput/>);

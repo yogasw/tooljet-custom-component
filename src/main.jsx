@@ -1,10 +1,9 @@
-import React, {useState} from 'https://esm.sh/react';
-import ReactDOMClient from 'https://esm.sh/stable/react-dom/client';
-import {createPortal} from 'https://esm.sh/stable/react-dom';
+import React, {useState} from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+import {createPortal, createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
 import DynamicInput from "./components/dynamic-input";
 import DateTimeLocal from "./components/date-time-local";
 import MyCustomComponent from "./components/my-custom-component";
-import TextareaAutosize from 'https://cdn.esm.sh/@mui/material/TextareaAutosize';
+import TextareaAutosize from 'https://cdn.jsdelivr.net/npm/@mui/material/TextareaAutosize/+esm';
 import ReactAutocompleteInput from "./components/react-autocomplete-input";
 import EsmSh from "./components/esm-sh";
 import Timer from "./components/timer";
@@ -758,7 +757,7 @@ const App = () => {
     );
 }
 
-const {createRoot} = ReactDOMClient;
+
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(<App tab="home"/>);

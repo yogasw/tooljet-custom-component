@@ -1,5 +1,5 @@
-import React, {useCallback} from 'https://esm.sh/react';
-import ReactFlow, {useNodesState, useEdgesState, addEdge} from 'https://esm.sh/reactflow';
+import React, {useCallback} from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+import ReactFlow, {useNodesState, useEdgesState, addEdge} from "https://cdn.jsdelivr.net/npm/reactflow/+esm";
 
 const HeadReactFlow = () => (
     <head>
@@ -143,6 +143,6 @@ const ReactFlowDiagram = ({data, updateData, runQuery}) => {
 export default ReactFlowDiagram;
 
 //for tooljet
-// import {createRoot} from 'https://esm.sh/react-dom@18.2.0';
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom';
 // const ConnectedComponent = Tooljet.connectComponent(MyCustomComponent);
 // createRoot(document.body).render(<ConnectedComponent/>);

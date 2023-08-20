@@ -1,6 +1,6 @@
-import * as React from 'https://esm.sh/react';
+import * as React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
 
-import Button from 'https://cdn.esm.sh/@mui/material/Button';
+import Button from 'https://cdn.jsdelivr.net/npm/@mui/material/Button/+esm';
 
 class EsmSh extends React.Component {
     render() {
@@ -10,6 +10,6 @@ class EsmSh extends React.Component {
 
 export default EsmSh;
 // //for tooljet
-// import {createRoot} from 'https://esm.sh/react-dom@18.2.0';
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom';
 // const ConnectedComponent = Tooljet.connectComponent(DateTimeLocal);
 // createRoot(document.body).render(<EsmSh/>);

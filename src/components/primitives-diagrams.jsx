@@ -1,4 +1,4 @@
-import React, {Component} from 'https://esm.sh/react';
+import React, {Component} from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
 import {OrgDiagram, FamDiagram} from 'https://esm.sh/basicprimitivesreact';
 import {
     AnnotationType,
@@ -11,7 +11,7 @@ import {
     LineType
 } from 'https://esm.sh/basicprimitives';
 
-export const HeadDiagram = () => (
+const HeadDiagram = () => (
     // <head>
     //     <meta charset="utf-8"/>
     //     <meta name="viewport" content="width=device-width, initial-scale=1"/>

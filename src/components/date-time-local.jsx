@@ -1,4 +1,4 @@
-import * as React from 'https://esm.sh/react';
+import * as React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
 
 const styleDateTime = {
     root: {
@@ -47,6 +47,6 @@ const DateTimeLocal = ({data, updateData, runQuery}) => {
 export default DateTimeLocal
 
 // //for tooljet
-// import {createRoot} from 'https://esm.sh/react-dom@18.2.0';
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom';
 // const ConnectedComponent = Tooljet.connectComponent(DateTimeLocal);
 // createRoot(document.body).render(<ConnectedComponent/>);

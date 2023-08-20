@@ -1,14 +1,14 @@
-import * as React from 'https://esm.sh/react';
+import * as React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
 
-import { useRete } from "https://esm.sh/rete-react-plugin";
-import { createRoot } from "https://esm.sh/react-dom/client";
-import { NodeEditor, ClassicPreset } from "https://esm.sh/rete";
-import { AreaPlugin, AreaExtensions } from "https://esm.sh/rete-area-plugin";
+import { useRete } from "https://cdn.jsdelivr.net/npm/rete-react-plugin/+esm";
+import { createRoot } from "https://cdn.jsdelivr.net/npm/react-dom/client/+esm";
+import { NodeEditor, ClassicPreset } from "https://cdn.jsdelivr.net/npm/rete/+esm";
+import { AreaPlugin, AreaExtensions } from "https://cdn.jsdelivr.net/npm/rete-area-plugin/+esm";
 import {
     ConnectionPlugin,
     Presets as ConnectionPresets
-} from "https://esm.sh/rete-connection-plugin";
-import { ReactPlugin, Presets } from "https://esm.sh/rete-react-plugin";
+} from "https://cdn.jsdelivr.net/npm/rete-connection-plugin/+esm";
+import { ReactPlugin, Presets } from "https://cdn.jsdelivr.net/npm/rete-react-plugin/+esm";
 
 
 export async function createEditor(container) {

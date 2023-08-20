@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useCallback} from 'https://esm.sh/react';
-import moment from 'https://esm.sh/moment';
-import {LuFileJson2} from "https://esm.sh/react-icons/lu";
+import React, {useState, useEffect, useCallback} from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+import moment from 'https://cdn.jsdelivr.net/npm/moment/+esm';
+import {LuFileJson2} from "https://cdn.jsdelivr.net/npm/react-icons/lu/+esm";
 
 const HeadConversationHistory = () => (
     <head>
@@ -547,7 +547,7 @@ const AvatarHuman = (props) => (
 export default ConversationHistory;
 
 // //for tooljet
-// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom/+esm';
 // const ConnectedComponent = Tooljet.connectComponent(ConversationHistory);
 // createRoot(document.body).render(<ConnectedComponent/>);
 //

@@ -1,5 +1,4 @@
-import * as React from 'https://esm.sh/react';
-
+import * as React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
 const HeadTailwind = () => (
     <head>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"/>
@@ -113,6 +112,6 @@ const ChatWithTailwind = ({data, updateData, runQuery}) => (
 export default ChatWithTailwind;
 
 //for tooljet
-// import {createRoot} from 'https://esm.sh/react-dom@18.2.0';
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom';
 // const ConnectedComponent = Tooljet.connectComponent(MyCustomComponent);
 // createRoot(document.body).render(<ConnectedComponent/>);

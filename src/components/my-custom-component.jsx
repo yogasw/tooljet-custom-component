@@ -1,6 +1,6 @@
-import * as React from 'https://esm.sh/react';
-import Button from 'https://cdn.esm.sh/@mui/material/Button';
-import Container from 'https://cdn.esm.sh/@mui/material/Container';
+import * as React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+import Button from 'https://cdn.jsdelivr.net/npm/@mui/material/Button/+esm';
+import Container from 'https://cdn.jsdelivr.net/npm/@mui/material/Container/+esm';
 
 const MyCustomComponent = ({data, updateData, runQuery}) => (
     <Container>
@@ -20,6 +20,6 @@ const MyCustomComponent = ({data, updateData, runQuery}) => (
 export default MyCustomComponent;
 
 //for tooljet
-// import {createRoot} from 'https://esm.sh/react-dom@18.2.0';
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom';
 // const ConnectedComponent = Tooljet.connectComponent(MyCustomComponent);
 // createRoot(document.body).render(<ConnectedComponent/>);
