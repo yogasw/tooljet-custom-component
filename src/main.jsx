@@ -38,10 +38,20 @@ const ChatHistory = {
             "v2Response": {
                 "responseId": "03be5e2e-43f5-4fd6-8ca9-169a2be6d8b9-2316b108",
                 "queryResult": {
-                    "queryText": ",",
+                    "queryText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                     "parameters": {},
                     "allRequiredParamsPresent": true,
-                    "fulfillmentText": "Terima kasih.",
+                    "fulfillmentText": "Cindy Kranz, President & Chief Executive Officer\n" +
+                        "\n" +
+                        "Telephone: 416-366-1085\n" +
+                        "\n" +
+                        "Email: ckranz@paresis.ca\n" +
+                        "\n" +
+                        "Jim Gordon, Interim Chief Financial Officer\n" +
+                        "\n" +
+                        "Telephone: 416-366-1086\n" +
+                        "\n" +
+                        "Email: jgordon@paresis.ca",
                     "fulfillmentMessages": [
                         {
                             "text": {
@@ -100,7 +110,7 @@ const ChatHistory = {
             "v2Response": {
                 "responseId": "a47ed869-cac4-4ee1-92c0-b034bc68dde4-2316b108",
                 "queryResult": {
-                    "queryText": ",",
+                    "queryText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                     "parameters": {},
                     "allRequiredParamsPresent": true,
                     "fulfillmentText": "Terima kasih.",
@@ -525,7 +535,7 @@ const ChatHistory = {
     ],
     "name": "projects/ABC/locations/global/agent/environments/draft/sessions/0d62557fae218f226e2e8f22cf41c70de47126faf69bb9079b952b52b3ef78c4/conversations/1692372075953",
     "conversationResponse": {
-        "queryText": ",",
+        "queryText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         "parameters": {},
         "fulfillmentText": "Terima kasih sudah menghubungi * Customer Care*, ",
         "fulfillmentMessages": [
@@ -665,13 +675,13 @@ const App = () => {
     }
     return (
         <div>
-            <h1>React Flow</h1>
-            <IFrame width="100%" height="400">
-                <ReactFlowDiagram/>
-            </IFrame>
             <h1>Conversation History</h1>
             <IFrame width="100%" height="400">
                 <ConversationHistory data={ChatHistory}/>
+            </IFrame>
+            <h1>React Flow</h1>
+            <IFrame width="100%" height="400">
+                <ReactFlowDiagram/>
             </IFrame>
             <h1>Chat Component with Tailwind Css</h1>
             <IFrame width="100%" height="400">

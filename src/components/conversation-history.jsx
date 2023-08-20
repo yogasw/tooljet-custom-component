@@ -1,6 +1,6 @@
 import * as React from 'https://cdn.jsdelivr.net/npm/react/+esm';
 import moment from 'https://cdn.jsdelivr.net/npm/moment/+esm';
-import { LuFileJson2 } from "https://cdn.jsdelivr.net/npm/react-icons/lu/+esm";
+import {LuFileJson2} from "https://cdn.jsdelivr.net/npm/react-icons/lu/+esm";
 
 const HeadConversationHistory = () => (
     <head>
@@ -40,7 +40,7 @@ const ConversationHistory = ({data, updateData, runQuery}) => (
                 <div className="flex flex-col flex-grow h-0 p-4 overflow-auto">
                     {
                         data?.interactions?.toReversed()?.map((d, n) => {
-                            const {queryText, fulfillmentText} = d.v2Response.queryResult
+                            const {queryText, fulfillmentText, intent} = d.v2Response.queryResult
                             let mStartTime = moment.utc(d.responseTime)
                             mStartTime.utcOffset('+07:00');
                             let bg = {}
@@ -53,26 +53,40 @@ const ConversationHistory = ({data, updateData, runQuery}) => (
                                     <div style={{
                                         display: "flex",
                                         flexDirection: "row",
+                                        justifyContent: "center",
+                                        flex: 1
+                                    }}>
+                                        <div
+                                            className="font-bold text-white rounded-full bg-blue-600 flex items-center justify-center font-mono"
+                                            style={{height: 20, width: 20, fontSize: 10}}>{n+1}.
+                                        </div>
+                                        <span className="text-xs text-gray-500 leading-none p-1">{intent?.displayName}</span>
+                                    </div>
+                                    <div style={{
+                                        display: "flex",
+                                        flexDirection: "row",
                                         justifyContent: "flex-end",
                                     }}>
-
                                         <div style={{
                                             flexDirection: "row",
                                             flex: 1
                                         }}>
                                             <Left message={fulfillmentText}/>
                                         </div>
-                                        <div >
+                                        <div>
                                             <span className="text-xs text-gray-500 leading-none">{fStartTime}</span>
                                             <div className={"p-3"}>
-                                                <button type="button" className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true" />
+                                                <button type="button"
+                                                        className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true"/>
                                                 </button>
-                                                <button type="button" className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true" />
+                                                <button type="button"
+                                                        className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true"/>
                                                 </button>
-                                                <button type="button" className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true" />
+                                                <button type="button"
+                                                        className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true"/>
                                                 </button>
                                             </div>
                                         </div>
