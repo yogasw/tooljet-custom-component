@@ -1,7 +1,7 @@
-import * as React from "https://esm.sh/react";
-import TextField from "https://cdn.esm.sh/@mui/material/TextField";
-import Typography from "https://cdn.esm.sh/@mui/material/Typography";
-import {FiPlus, FiTrash} from "https://cdn.esm.sh/react-icons/fi";
+import * as React from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
+import TextField from "https://cdn.jsdelivr.net/npm/@mui/material/TextField/+esm";
+import Typography from "https://cdn.jsdelivr.net/npm/@mui/material/Typography/+esm";
+import {FiPlus, FiTrash} from "https://cdn.jsdelivr.net/npm/react-icons/fi/+esm";
 const DynamicInput = ({data, updateData, runQuery}) => {
   const {useEffect} = React;
   const ALPHA_NUMERIC_DASH_REGEX = /^[a-zA-Z0-9\_]+$/;

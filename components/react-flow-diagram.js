@@ -1,5 +1,5 @@
-import React, {useCallback} from "https://esm.sh/react";
-import ReactFlow, {useNodesState, useEdgesState, addEdge} from "https://esm.sh/reactflow";
+import React, {useCallback} from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
+import ReactFlow, {useNodesState, useEdgesState, addEdge} from "https://cdn.jsdelivr.net/npm/reactflow/+esm";
 const HeadReactFlow = () => /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("link", {
   href: "https://cdn.jsdelivr.net/npm/reactflow/dist/style.css",
   rel: "stylesheet"

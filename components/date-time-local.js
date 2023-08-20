@@ -1,4 +1,4 @@
-import * as React from "https://esm.sh/react";
+import * as React from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
 const styleDateTime = {
   root: {
     display: "flex",

@@ -1,4 +1,4 @@
-import React, {Component} from "https://esm.sh/react";
+import React, {Component} from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
 import {OrgDiagram, FamDiagram} from "https://esm.sh/basicprimitivesreact";
 import {
   AnnotationType,
@@ -10,7 +10,7 @@ import {
   GroupByType,
   LineType
 } from "https://esm.sh/basicprimitives";
-export const HeadDiagram = () => /* @__PURE__ */ React.createElement("style", null, globalCssDiagram);
+const HeadDiagram = () => /* @__PURE__ */ React.createElement("style", null, globalCssDiagram);
 class PrimitivesDiagrams extends Component {
   render() {
     const config = {

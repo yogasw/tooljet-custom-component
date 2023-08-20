@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "https://esm.sh/react";
+import React, {useState, useEffect} from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
 const Timer = () => {
   const [count, setCount] = useState(0);
   useEffect(() => {
