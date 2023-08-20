@@ -1,4 +1,4 @@
-import React, {useCallback} from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+import React, {useCallback,useState} from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
 import ReactFlow, {
     addEdge,
     ConnectionLineType,
@@ -6,7 +6,7 @@ import ReactFlow, {
     useEdgesState,
 } from "https://cdn.jsdelivr.net/npm/reactflow/+esm";
 import dagre from 'https://cdn.jsdelivr.net/npm/@dagrejs/dagre/+esm';
-
+import {createPortal} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
 
@@ -50,6 +50,9 @@ const getLayoutedElements = (nodes, edges, nodeWidth, nodeHeight, direction = 'L
 
 const ReactFlowDiagram = ({data}) => {
     const {initialNodes, initialEdges, nodeWidth, nodeHeight} = data;
+    if (!initialNodes || !initialEdges || !nodeWidth || !nodeHeight) {
+        return null;
+    }
     const {nodes: layoutedNodes, edges: layoutedEdges} = getLayoutedElements(
         initialNodes,
         initialEdges,
@@ -86,9 +89,31 @@ const ReactFlowDiagram = ({data}) => {
     );
 };
 
+const IFrame = ({
+                    children,
+                    ...props
+                }) => {
+    const [contentRef, setContentRef] = useState(null)
+    const mountNode =
+        contentRef?.contentWindow?.document?.body
+    return (
+        <iframe {...props} ref={setContentRef}>
+            {mountNode && createPortal(children, mountNode)}
+        </iframe>
+    )
+}
+
 export default ReactFlowDiagram;
 
-//for tooljet
-// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom';
-// const ConnectedComponent = Tooljet.connectComponent(MyCustomComponent);
+// for tooljet
+// const Result = ({data}) => {
+//     return <IFrame width="100%" height="100%" style={{
+//         display: "block",       /* iframes are inline by default */
+//         border: "none",        /* Reset default border */
+//         height: "100vh",        /* Viewport-relative units */
+//         width: "100vw"
+//     }}><ReactFlowDiagram data={data}/></IFrame>
+// }
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
+// const ConnectedComponent = Tooljet.connectComponent(Result);
 // createRoot(document.body).render(<ConnectedComponent/>);

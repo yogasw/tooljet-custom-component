@@ -649,6 +649,42 @@ const ChatHistory = {
     "no": 1
 }
 
+const position = {x: 0, y: 0};
+const edgeType = 'smoothstep';
+const reactFLowData = {
+    initialNodes: [
+        {
+            id: '1',
+            type: 'input',
+            data: {label: 'input'},
+            position,
+        },
+        {
+            id: '2',
+            data: {label: 'node 2'},
+            position,
+        },
+        {
+            id: '2a',
+            data: {label: 'node 2a'},
+            position,
+        },
+        {
+            id: '3',
+            data: {label: 'node 3'},
+            position,
+        },
+
+    ],
+    initialEdges: [
+        {id: 'e12', source: '1', target: '2', type: edgeType, animated: true},
+        {id: 'e13', source: '1', target: '3', type: edgeType, animated: true},
+        {id: 'e22a', source: '2', target: '2a', type: edgeType, animated: false},
+        {id: 'e22b', source: '2', target: '2b', type: edgeType, animated: false},
+    ],
+    nodeWidth: 172,
+    nodeHeight: 36
+}
 
 const App = () => {
 
@@ -680,7 +716,7 @@ const App = () => {
             </IFrame>
             <h1>React Flow</h1>
             <IFrame width="100%" height="400">
-                <ReactFlowDiagram/>
+                <ReactFlowDiagram data={reactFLowData}/>
             </IFrame>
             <h1>Chat Component with Tailwind Css</h1>
             <IFrame width="100%" height="400">
