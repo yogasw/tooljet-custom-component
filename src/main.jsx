@@ -7,7 +7,7 @@ import TextareaAutosize from 'https://cdn.jsdelivr.net/npm/@mui/material/Textare
 import ReactAutocompleteInput from "./components/react-autocomplete-input";
 import EsmSh from "./components/esm-sh";
 import Timer from "./components/timer";
-import RetejsBasic from "./components/retejs-basic";
+// import RetejsBasic from "./components/retejs-basic";
 import PrimitivesDiagrams from "./components/primitives-diagrams";
 import ChatWithTailwind from "./components/chat-with-tailwind";
 import ConversationHistory from "./components/conversation-history";
@@ -688,8 +688,9 @@ const App = () => {
             </IFrame>
             <h1>Basic Primitives Diagrams for React</h1>
             <PrimitivesDiagrams/>
-            <h1>Retejs Basic</h1>
-            <RetejsBasic/>
+            {/*Error after use jsdelivr from esm.sh*/}
+            {/*<h1>Retejs Basic</h1>*/}
+            {/*<RetejsBasic/>*/}
             <h1>ReactAutocompleteInput</h1>
             <ReactAutocompleteInput
                 updateData={(data) => {

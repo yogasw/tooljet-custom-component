@@ -108,7 +108,7 @@ const ConversationHistory = ({data, updateData, runQuery}) => {
     const [isOpen, showModal] = useState(false)
     const [childrenModal, setChildrenModal] = useState(false)
     const [cssModal, setCssModal] = useState(null)
-    let total = data?.interactions.length;
+    let total = data?.interactions?.length;
     return (
         <div>
             <HeadConversationHistory/>
