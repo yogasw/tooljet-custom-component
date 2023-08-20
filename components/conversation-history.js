@@ -159,13 +159,18 @@ const ConversationHistory = ({data, updateData, runQuery}) => {
       "aria-hidden": "true"
     }))))), /* @__PURE__ */ React.createElement(Right, {
       message: queryText
-    }), /* @__PURE__ */ React.createElement("span", {
-      className: "text-xs text-gray-500 leading-none"
-    }, "Input Contexts: ", strInputContexts), /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("span", {
-      className: "pt-1  text-xs text-gray-500 leading-none"
-    }, "Output Contexts: ", strOutputContexts), /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("span", {
-      className: "text-xs text-gray-500 leading-none"
-    }, "Webhook Status: ", v2Response?.webhookStatus?.message), /* @__PURE__ */ React.createElement("br", null));
+    }), /* @__PURE__ */ React.createElement("div", {
+      style: {display: "flex", flexDirection: "column", lineHeight: "11px"}
+    }, /* @__PURE__ */ React.createElement("span", {
+      className: "text-gray-500",
+      style: {fontSize: "0.7em", display: "inline-block"}
+    }, "Input Contexts: ", strInputContexts), /* @__PURE__ */ React.createElement("span", {
+      className: "text-gray-500",
+      style: {fontSize: "0.7em", display: "inline-block"}
+    }, "Output Contexts: ", strOutputContexts), /* @__PURE__ */ React.createElement("span", {
+      className: "text-gray-500",
+      style: {fontSize: "0.7em", display: "inline-block"}
+    }, "Webhook Status: ", v2Response?.webhookStatus?.message)));
   })))), /* @__PURE__ */ React.createElement(Modal, {
     isOpen,
     children: childrenModal,
