@@ -95,7 +95,7 @@ const ConversationHistory = ({data, updateData, runQuery}) => {
   const [isOpen, showModal] = useState(false);
   const [childrenModal, setChildrenModal] = useState(false);
   const [cssModal, setCssModal] = useState(null);
-  let total = data?.interactions.length;
+  let total = data?.interactions?.length;
   return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(HeadConversationHistory, null), /* @__PURE__ */ React.createElement("div", {
     className: "flex flex-col min-h-screen"
   }, /* @__PURE__ */ React.createElement("div", {

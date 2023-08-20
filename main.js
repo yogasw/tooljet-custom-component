@@ -7,7 +7,6 @@ import TextareaAutosize from "https://cdn.jsdelivr.net/npm/@mui/material/Textare
 import ReactAutocompleteInput from "./components/react-autocomplete-input.js";
 import EsmSh from "./components/esm-sh.js";
 import Timer from "./components/timer.js";
-import RetejsBasic from "./components/retejs-basic.js";
 import PrimitivesDiagrams from "./components/primitives-diagrams.js";
 import ChatWithTailwind from "./components/chat-with-tailwind.js";
 import ConversationHistory from "./components/conversation-history.js";
@@ -664,7 +663,7 @@ const App = () => {
   }, /* @__PURE__ */ React.createElement(ReactFlowDiagram, null)), /* @__PURE__ */ React.createElement("h1", null, "Chat Component with Tailwind Css"), /* @__PURE__ */ React.createElement(IFrame, {
     width: "100%",
     height: "400"
-  }, /* @__PURE__ */ React.createElement(ChatWithTailwind, null)), /* @__PURE__ */ React.createElement("h1", null, "Basic Primitives Diagrams for React"), /* @__PURE__ */ React.createElement(PrimitivesDiagrams, null), /* @__PURE__ */ React.createElement("h1", null, "Retejs Basic"), /* @__PURE__ */ React.createElement(RetejsBasic, null), /* @__PURE__ */ React.createElement("h1", null, "ReactAutocompleteInput"), /* @__PURE__ */ React.createElement(ReactAutocompleteInput, {
+  }, /* @__PURE__ */ React.createElement(ChatWithTailwind, null)), /* @__PURE__ */ React.createElement("h1", null, "Basic Primitives Diagrams for React"), /* @__PURE__ */ React.createElement(PrimitivesDiagrams, null), /* @__PURE__ */ React.createElement("h1", null, "ReactAutocompleteInput"), /* @__PURE__ */ React.createElement(ReactAutocompleteInput, {
     updateData: (data2) => {
       updateData(data2);
     },
