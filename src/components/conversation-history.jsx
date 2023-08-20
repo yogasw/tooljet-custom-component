@@ -171,15 +171,14 @@ const ConversationHistory = ({data, updateData, runQuery}) => {
                                             </div>
                                         </div>
                                         <Right message={queryText}/>
-                                        <span
-                                            className="text-xs text-gray-500 leading-none">Input Contexts: {strInputContexts}</span>
-                                        <br/>
-                                        <span
-                                            className="pt-1  text-xs text-gray-500 leading-none">Output Contexts: {strOutputContexts}</span>
-                                        <br/>
-                                        <span
-                                            className="text-xs text-gray-500 leading-none">Webhook Status: {v2Response?.webhookStatus?.message}</span>
-                                        <br/>
+                                        <div style={{display: 'flex', flexDirection: "column", lineHeight:"11px"}}>
+                                            <span
+                                                className="text-gray-500" style={{fontSize :'0.7em',  display: "inline-block"}}>Input Contexts: {strInputContexts}</span>
+                                            <span
+                                                className="text-gray-500" style={{fontSize :'0.7em',display: "inline-block"}}>Output Contexts: {strOutputContexts}</span>
+                                            <span
+                                                className="text-gray-500" style={{fontSize :'0.7em', display: "inline-block"}}>Webhook Status: {v2Response?.webhookStatus?.message}</span>
+                                        </div>
                                     </div>
                                 )
                             })
@@ -559,7 +558,7 @@ const AvatarHuman = (props) => (
 
 export default ConversationHistory;
 //
-// //for tooljet
+// // for tooljet
 // import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom/+esm';
 // const ConnectedComponent = Tooljet.connectComponent(ConversationHistory);
 // createRoot(document.body).render(<ConnectedComponent/>);
