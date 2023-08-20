@@ -1,12 +1,30 @@
-import * as React from 'https://cdn.jsdelivr.net/npm/react/+esm';
-import moment from 'https://cdn.jsdelivr.net/npm/moment/+esm';
-import {LuFileJson2} from "https://cdn.jsdelivr.net/npm/react-icons/lu/+esm";
+import React, {useState, useEffect, useCallback} from 'https://esm.sh/react';
+import moment from 'https://esm.sh/moment';
+import {LuFileJson2} from "https://esm.sh/react-icons/lu";
 
 const HeadConversationHistory = () => (
     <head>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"/>
     </head>
 );
+const KEY_NAME_ESC = 'Escape';
+const KEY_EVENT_TYPE = 'keyup';
+
+function useEscapeKey(handleClose) {
+    const handleEscKey = useCallback((event) => {
+        if (event.key === KEY_NAME_ESC) {
+            handleClose();
+        }
+    }, [handleClose]);
+
+    useEffect(() => {
+        document.addEventListener(KEY_EVENT_TYPE, handleEscKey, false);
+
+        return () => {
+            document.removeEventListener(KEY_EVENT_TYPE, handleEscKey, false);
+        };
+    }, [handleEscKey]);
+}
 
 const Left = ({message}) => {
     return <div className="flex w-full mt-2 space-x-3 max-w-2xl">
@@ -32,76 +50,135 @@ const Right = ({message}) => {
         </div>
     </div>
 }
-const ConversationHistory = ({data, updateData, runQuery}) => (
-    <div>
-        <HeadConversationHistory/>
-        <div className="flex flex-col min-h-screen">
-            <div className="flex flex-col flex-grow w-full bg-white shadow-xl rounded-lg overflow-hidden">
-                <div className="flex flex-col flex-grow h-0 p-4 overflow-auto">
-                    {
-                        data?.interactions?.toReversed()?.map((d, n) => {
-                            const {queryText, fulfillmentText, intent} = d.v2Response.queryResult
-                            let mStartTime = moment.utc(d.responseTime)
-                            mStartTime.utcOffset('+07:00');
-                            let bg = {}
-                            if (n % 2 === 0) {
-                                bg = {backgroundColor: "#f3f4f6"}
-                            }
-                            const fStartTime = mStartTime.format('YYYY-MM-DD HH:mm:ss');
-                            return (
-                                <div style={bg} className={"p-2 rounded"}>
-                                    <div style={{
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        justifyContent: "center",
-                                        flex: 1
-                                    }}>
-                                        <div
-                                            className="font-bold text-white rounded-full bg-blue-600 flex items-center justify-center font-mono"
-                                            style={{height: 20, width: 20, fontSize: 10}}>{n+1}.
-                                        </div>
-                                        <span className="text-xs text-gray-500 leading-none p-1">{intent?.displayName}</span>
-                                    </div>
-                                    <div style={{
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        justifyContent: "flex-end",
-                                    }}>
-                                        <div style={{
-                                            flexDirection: "row",
-                                            flex: 1
-                                        }}>
-                                            <Left message={fulfillmentText}/>
-                                        </div>
-                                        <div>
-                                            <span className="text-xs text-gray-500 leading-none">{fStartTime}</span>
-                                            <div className={"p-3"}>
-                                                <button type="button"
-                                                        className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true"/>
-                                                </button>
-                                                <button type="button"
-                                                        className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true"/>
-                                                </button>
-                                                <button type="button"
-                                                        className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-                                                    <LuFileJson2 className="h-5 w-5" aria-hidden="true"/>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <Right message={queryText}/>
-                                </div>
-                            )
-                        })
-                    }
 
+const BlockCode = (code) => {
+    return (
+        <div className="relative mx-auto">
+            <div className="rounded-md bg-gray-900 p-4 text-white">
+                <div className="mb-2 flex items-center justify-between">
+                    <span className="text-gray-400">Code:</span>
+                    <button
+                        className="code rounded-md bg-gray-800 px-3 py-1 text-gray-300 hover:bg-gray-700"
+                        onClick={() => {
+                            navigator.clipboard
+                                .writeText(code)
+                                .catch((err) => {
+                                    console.log(err.message);
+                                });
+                        }}>Copy
+                    </button>
+                </div>
+                <div className="overflow-x-auto">
+                  <pre id="code" className="text-gray-300">
+                    <code>{code ? code : ""}</code>
+                  </pre>
                 </div>
             </div>
         </div>
-    </div>
-);
+    )
+}
+const Modal = ({isOpen, showModal, children, cssModal}) => {
+    useEscapeKey(() => showModal(false));
+    return (
+        <div id="modelConfirm"
+             className={`fixed ${isOpen ? '' : "hidden"} z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 `}>
+            <div
+                className={"relative top-5 mx-auto shadow-xl rounded-md bg-white " + `${cssModal != null || cssModal !== "" ? cssModal : 'max-w-2xl'}`}>
+                <div className="flex justify-end p-2">
+                    <button onClick={() => showModal(false)} type="button"
+                            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                  clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div className="p-6">
+                    {children}
+                </div>
+
+            </div>
+        </div>
+    );
+}
+const ConversationHistory = ({data, updateData, runQuery}) => {
+    const [isOpen, showModal] = useState(false)
+    const [childrenModal, setChildrenModal] = useState(false)
+    const [cssModal, setCssModal] = useState(null)
+    let total = data?.interactions.length;
+    return (
+        <div>
+            <HeadConversationHistory/>
+            <div className="flex flex-col min-h-screen">
+                <div className="flex flex-col flex-grow w-full bg-white shadow-xl rounded-lg overflow-hidden">
+                    <div className="flex flex-col flex-grow h-0 p-4 overflow-auto">
+                        {
+                            data?.interactions?.toReversed()?.map((d, n) => {
+                                const {queryText, fulfillmentText, intent} = d.v2Response.queryResult
+                                let mStartTime = moment.utc(d.responseTime)
+                                mStartTime.utcOffset('+07:00');
+                                let bg = {}
+                                if (n % 2 === 0) {
+                                    bg = {backgroundColor: "#f3f4f6"}
+                                }
+                                const fStartTime = mStartTime.format('YYYY-MM-DD HH:mm:ss');
+                                return (
+                                    <div style={bg} className={"p-2 rounded"}>
+                                        <div style={{
+                                            display: "flex",
+                                            flexDirection: "row",
+                                            justifyContent: "center",
+                                            flex: 1
+                                        }}>
+                                            <div
+                                                className="font-bold text-white rounded-full bg-blue-600 flex items-center justify-center font-mono"
+                                                style={{height: 20, width: 20, fontSize: 10}}>{total - n}.
+                                            </div>
+                                            <span
+                                                className="text-xs text-gray-500 leading-none p-1">{intent?.displayName}</span>
+                                        </div>
+                                        <div style={{
+                                            display: "flex",
+                                            flexDirection: "row",
+                                            justifyContent: "flex-end",
+                                        }}>
+                                            <div style={{
+                                                flexDirection: "row",
+                                                flex: 1
+                                            }}>
+                                                <Left message={fulfillmentText}/>
+                                            </div>
+                                            <div>
+                                                <span className="text-xs text-gray-500 leading-none">{fStartTime}</span>
+                                                <div className={"p-3 flex"} style={{justifyContent: "flex-end"}}>
+                                                    <button
+                                                        onClick={() => {
+                                                            showModal(true)
+                                                            setChildrenModal(BlockCode(JSON.stringify(d, null, 2)))
+                                                        }}
+                                                        type="button"
+                                                        className="m-1 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                                                        <LuFileJson2 className="h-5 w-5" aria-hidden="true"/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <Right message={queryText}/>
+                                    </div>
+                                )
+                            })
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <Modal isOpen={isOpen} children={childrenModal} showModal={showModal} cssModal={cssModal}/>
+        </div>
+    )
+};
 
 const AvatarBot = (props) => (
     <svg
