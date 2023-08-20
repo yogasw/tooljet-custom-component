@@ -34,7 +34,7 @@ const ConversationHistory = ({data, updateData, runQuery}) => /* @__PURE__ */ Re
 }, /* @__PURE__ */ React.createElement("div", {
   className: "flex flex-col flex-grow h-0 p-4 overflow-auto"
 }, data?.interactions?.toReversed()?.map((d, n) => {
-  const {queryText, fulfillmentText} = d.v2Response.queryResult;
+  const {queryText, fulfillmentText, intent} = d.v2Response.queryResult;
   let mStartTime = moment.utc(d.responseTime);
   mStartTime.utcOffset("+07:00");
   let bg = {};
@@ -46,6 +46,18 @@ const ConversationHistory = ({data, updateData, runQuery}) => /* @__PURE__ */ Re
     style: bg,
     className: "p-2 rounded"
   }, /* @__PURE__ */ React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      flex: 1
+    }
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "font-bold text-white rounded-full bg-blue-600 flex items-center justify-center font-mono",
+    style: {height: 20, width: 20, fontSize: 10}
+  }, n + 1, "."), /* @__PURE__ */ React.createElement("span", {
+    className: "text-xs text-gray-500 leading-none p-1"
+  }, intent?.displayName)), /* @__PURE__ */ React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "row",

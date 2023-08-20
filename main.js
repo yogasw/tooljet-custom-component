@@ -35,10 +35,10 @@ const ChatHistory = {
       v2Response: {
         responseId: "03be5e2e-43f5-4fd6-8ca9-169a2be6d8b9-2316b108",
         queryResult: {
-          queryText: ",",
+          queryText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
           parameters: {},
           allRequiredParamsPresent: true,
-          fulfillmentText: "Terima kasih.",
+          fulfillmentText: "Cindy Kranz, President & Chief Executive Officer\n\nTelephone: 416-366-1085\n\nEmail: ckranz@paresis.ca\n\nJim Gordon, Interim Chief Financial Officer\n\nTelephone: 416-366-1086\n\nEmail: jgordon@paresis.ca",
           fulfillmentMessages: [
             {
               text: {
@@ -97,7 +97,7 @@ const ChatHistory = {
       v2Response: {
         responseId: "a47ed869-cac4-4ee1-92c0-b034bc68dde4-2316b108",
         queryResult: {
-          queryText: ",",
+          queryText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
           parameters: {},
           allRequiredParamsPresent: true,
           fulfillmentText: "Terima kasih.",
@@ -522,7 +522,7 @@ const ChatHistory = {
   ],
   name: "projects/ABC/locations/global/agent/environments/draft/sessions/0d62557fae218f226e2e8f22cf41c70de47126faf69bb9079b952b52b3ef78c4/conversations/1692372075953",
   conversationResponse: {
-    queryText: ",",
+    queryText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     parameters: {},
     fulfillmentText: "Terima kasih sudah menghubungi * Customer Care*, ",
     fulfillmentMessages: [
@@ -654,15 +654,15 @@ const App = () => {
   const runQuery = (query) => {
     console.log("run query", query);
   };
-  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "React Flow"), /* @__PURE__ */ React.createElement(IFrame, {
-    width: "100%",
-    height: "400"
-  }, /* @__PURE__ */ React.createElement(ReactFlowDiagram, null)), /* @__PURE__ */ React.createElement("h1", null, "Conversation History"), /* @__PURE__ */ React.createElement(IFrame, {
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "Conversation History"), /* @__PURE__ */ React.createElement(IFrame, {
     width: "100%",
     height: "400"
   }, /* @__PURE__ */ React.createElement(ConversationHistory, {
     data: ChatHistory
-  })), /* @__PURE__ */ React.createElement("h1", null, "Chat Component with Tailwind Css"), /* @__PURE__ */ React.createElement(IFrame, {
+  })), /* @__PURE__ */ React.createElement("h1", null, "React Flow"), /* @__PURE__ */ React.createElement(IFrame, {
+    width: "100%",
+    height: "400"
+  }, /* @__PURE__ */ React.createElement(ReactFlowDiagram, null)), /* @__PURE__ */ React.createElement("h1", null, "Chat Component with Tailwind Css"), /* @__PURE__ */ React.createElement(IFrame, {
     width: "100%",
     height: "400"
   }, /* @__PURE__ */ React.createElement(ChatWithTailwind, null)), /* @__PURE__ */ React.createElement("h1", null, "Basic Primitives Diagrams for React"), /* @__PURE__ */ React.createElement(PrimitivesDiagrams, null), /* @__PURE__ */ React.createElement("h1", null, "Retejs Basic"), /* @__PURE__ */ React.createElement(RetejsBasic, null), /* @__PURE__ */ React.createElement("h1", null, "ReactAutocompleteInput"), /* @__PURE__ */ React.createElement(ReactAutocompleteInput, {
