@@ -103,13 +103,16 @@ const ConversationHistory = ({data, updateData, runQuery}) => {
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex flex-col flex-grow h-0 p-4 overflow-auto"
   }, data?.interactions?.toReversed()?.map((d, n) => {
-    const {queryText, fulfillmentText, intent} = d.v2Response.queryResult;
+    const {inputContexts, v2Response} = d;
+    const {queryText, fulfillmentText, intent, outputContexts} = v2Response.queryResult;
     let mStartTime = moment.utc(d.responseTime);
     mStartTime.utcOffset("+07:00");
     let bg = {};
     if (n % 2 === 0) {
       bg = {backgroundColor: "#f3f4f6"};
     }
+    const strInputContexts = inputContexts?.map((context) => `${context.name.split("/").pop()} (${context.lifespanCount})`)?.join(", ");
+    const strOutputContexts = outputContexts?.map((context) => `${context.name.split("/").pop()} (${context.lifespanCount})`)?.join(", ");
     const fStartTime = mStartTime.format("YYYY-MM-DD HH:mm:ss");
     return /* @__PURE__ */ React.createElement("div", {
       style: bg,
@@ -156,7 +159,13 @@ const ConversationHistory = ({data, updateData, runQuery}) => {
       "aria-hidden": "true"
     }))))), /* @__PURE__ */ React.createElement(Right, {
       message: queryText
-    }));
+    }), /* @__PURE__ */ React.createElement("span", {
+      className: "text-xs text-gray-500 leading-none"
+    }, "Input Contexts: ", strInputContexts), /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("span", {
+      className: "pt-1  text-xs text-gray-500 leading-none"
+    }, "Output Contexts: ", strOutputContexts), /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("span", {
+      className: "text-xs text-gray-500 leading-none"
+    }, "Webhook Status: ", v2Response?.webhookStatus?.message), /* @__PURE__ */ React.createElement("br", null));
   })))), /* @__PURE__ */ React.createElement(Modal, {
     isOpen,
     children: childrenModal,
