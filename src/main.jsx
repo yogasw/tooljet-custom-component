@@ -12,8 +12,8 @@ import PrimitivesDiagrams from "./components/primitives-diagrams";
 import ChatWithTailwind from "./components/chat-with-tailwind";
 import ConversationHistory from "./components/conversation-history";
 import ReactFlowDiagram from "./components/react-flow-diagram";
-import {GenerateListDataFlow} from "./data/list-intent";
 import {ChatHistory} from "./data/chat-history";
+import {GenerateListDataFlow} from "./data/generate-list-flow";
 
 export const IFrame = ({
                            children,
