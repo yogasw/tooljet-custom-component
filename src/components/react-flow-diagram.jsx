@@ -1,12 +1,14 @@
-import React, {useCallback,useState, useEffect} from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+import React, {useCallback, useState, useEffect} from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
 import ReactFlow, {
     addEdge,
     ConnectionLineType,
     useNodesState,
     useEdgesState,
+    Controls, Background
 } from "https://cdn.jsdelivr.net/npm/reactflow/+esm";
 import dagre from 'https://cdn.jsdelivr.net/npm/@dagrejs/dagre/+esm';
 import {createPortal} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
+
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
 const KEY_NAME_ESC = 'Escape';
@@ -22,7 +24,7 @@ const HeadReactFlow = () => (
 const getLayoutedElements = (nodes, edges, nodeWidth, nodeHeight, direction = 'LR') => {
     const isHorizontal = direction === 'LR';
     dagreGraph.setGraph({rankdir: direction});
-
+    let firstNoteActive = null;
     nodes?.forEach((node) => {
         dagreGraph.setNode(node.id, {width: nodeWidth, height: nodeHeight});
     });
@@ -37,7 +39,6 @@ const getLayoutedElements = (nodes, edges, nodeWidth, nodeHeight, direction = 'L
         const nodeWithPosition = dagreGraph.node(node.id);
         node.targetPosition = isHorizontal ? 'left' : 'top';
         node.sourcePosition = isHorizontal ? 'right' : 'bottom';
-
         // We are shifting the dagre node position (anchor=center center) to the top left
         // so it matches the React Flow node anchor point (top left).
         node.position = {
@@ -45,10 +46,13 @@ const getLayoutedElements = (nodes, edges, nodeWidth, nodeHeight, direction = 'L
             y: nodeWithPosition.y - nodeHeight / 2,
         };
 
+        if (node?.first) {
+            firstNoteActive = node;
+        }
         return node;
     });
 
-    return {nodes, edges};
+    return {nodes, edges, firstNoteActive};
 };
 
 function useEscapeKey(handleClose) {
@@ -94,8 +98,8 @@ const Modal = ({isOpen, showModal, children, cssModal}) => {
     );
 }
 
-const DetailIntent = (data) =>{
-    return(
+const DetailIntent = (data) => {
+    return (
         <div className="bg-white shadow overflow-hidden sm:rounded-lg">
             <div className="px-4 py-5 sm:px-6">
                 <h3 className="text-lg leading-6 font-medium text-gray-900">Intent Detail</h3>
@@ -122,8 +126,10 @@ const DetailIntent = (data) =>{
                     <div className="sm:col-span-2">
                         <dt className="text-sm font-medium text-gray-500">About</dt>
                         <dd className="mt-1 text-sm text-gray-900">
-                            Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur
-                            qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud
+                            Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa
+                            consequat. Excepteur
+                            qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident.
+                            Irure nostrud
                             pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
                         </dd>
                     </div>
@@ -145,7 +151,8 @@ const DetailIntent = (data) =>{
                                 <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
                                     <div className="w-0 flex-1 flex items-center">
                                         {/*<PaperClipIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />*/}
-                                        <span className="ml-2 flex-1 w-0 truncate">coverletter_back_end_developer.pdf</span>
+                                        <span
+                                            className="ml-2 flex-1 w-0 truncate">coverletter_back_end_developer.pdf</span>
                                     </div>
                                     <div className="ml-4 flex-shrink-0">
                                         <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -171,7 +178,7 @@ const ReactFlowDiagram = ({data}) => {
     const [childrenModal, setChildrenModal] = useState(false)
     const [cssModal, setCssModal] = useState("max-w-lg")
 
-    const {nodes: layoutedNodes, edges: layoutedEdges} = getLayoutedElements(
+    const {nodes: layoutedNodes, edges: layoutedEdges, firstNoteActive} = getLayoutedElements(
         initialNodes,
         initialEdges,
         nodeWidth,
@@ -184,11 +191,10 @@ const ReactFlowDiagram = ({data}) => {
     const onConnect = useCallback(
         (params) =>
             setEdges((eds) =>
-                addEdge({...params, type: ConnectionLineType.SmoothStep, animated: true}, eds)
+                addEdge({...params, type: ConnectionLineType.SmoothStep}, eds)
             ),
         []
     );
-
     return (
         <div>
             <HeadReactFlow/>
@@ -200,12 +206,16 @@ const ReactFlowDiagram = ({data}) => {
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
                 connectionLineType={ConnectionLineType.SmoothStep}
-                fitView
+                // fitView
                 onNodeClick={(event, element) => {
                     setChildrenModal(DetailIntent())
                     showModal(true)
                 }}
-            >
+                snapToGrid={true}
+                attributionPosition="top-right"
+                minZoom={0.1}>
+                <Controls/>
+                <Background color="#aaa" gap={16}/>
             </ReactFlow>
         </div>
     );
