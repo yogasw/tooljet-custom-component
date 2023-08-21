@@ -8,6 +8,7 @@ export const GenerateListDataFlow = () => {
     let nodeHeight = 36;
     let initialNodes = []
     let initialEdges = []
+    const listIntent = new Map();
 
     let interactions = {}
     ChatHistory.interactions.forEach(({v2Response}, n) => {
@@ -22,14 +23,26 @@ export const GenerateListDataFlow = () => {
             }
         }
     })
-    console.log("interactions", interactions)
+    ListIntent.intents.forEach(({name}) => {
+        listIntent.set(name?.split('/').pop(), "intent");
+    });
 
+    console.log(listIntent)
     ListIntent.intents.forEach((intent, index) => {
+        let intentId = intent.name.split('/').pop()
+        let source = intent?.parentFollowupIntentName?.split('/').pop()
+        if (!listIntent.has(source) && source) {
+            return
+        }
+        if (intent.displayName === "become_reseller_ensubmit"){
+            console.log("masuk", intent)
+            console.log("masuk",listIntent.has(intentId))
+        }
+
+
         let history = ''
         let style = ''
         let active = false
-        let intentId = intent.name.split('/').pop()
-        let source = intent?.parentFollowupIntentName?.split('/').pop()
 
         if (interactions[intentId]) {
             history = ` (${interactions[intentId].history})`
