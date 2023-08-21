@@ -66,6 +66,7 @@ function useEscapeKey(handleClose) {
         };
     }, [handleEscKey]);
 }
+
 const Modal = ({isOpen, showModal, children, cssModal}) => {
     useEscapeKey(() => showModal(false));
     return (
