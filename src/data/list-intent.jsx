@@ -1,3 +1,5 @@
+import {ChatHistory} from "./chat-history";
+
 export const GenerateListDataFlow = () => {
     const position = {x: 0, y: 0};
     const edgeType = 'smoothstep';
@@ -6,21 +8,56 @@ export const GenerateListDataFlow = () => {
     let initialNodes = []
     let initialEdges = []
 
+    let interactions = {}
+    ChatHistory.interactions.forEach(({v2Response}, n) => {
+        let intent = v2Response?.queryResult?.intent?.name?.split('/').pop()
+        if (interactions[intent]) {
+            interactions[intent].count = interactions[intent].count + 1
+            interactions[intent].history = `${interactions[intent].history},${n + 1}`
+        } else {
+            interactions[intent] = {
+                count: 1,
+                history: `${n + 1}`
+            }
+        }
+    })
+    console.log("interactions", interactions)
+
     ListIntent.intents.forEach((intent, index) => {
+        let history = ''
+        let style = ''
+        let active = false
+        let intentId = intent.name.split('/').pop()
+        let source = intent?.parentFollowupIntentName?.split('/').pop()
+
+        if (interactions[intentId]) {
+            history = ` (${interactions[intentId].history})`
+            style = {
+                backgroundColor: "#e6e6e9",
+                borderColor: '#ddd',
+                border: 1
+            }
+
+            if (interactions[source]) {
+                active = true
+            }
+        }
+
+
         const node = {
-            id: intent.name,
-            data: {label: intent.displayName},
+            id: intentId,
+            data: {label: `${intent.displayName}${history}`},
             position,
+            style
         }
         initialNodes.push(node)
         const edge = {
             id: `e${index}`,
-            source: intent?.parentFollowupIntentName,
-            target: intent.name,
+            source: source,
+            target: intentId,
             type: edgeType,
-            animated: false
+            animated: active
         }
-
         initialEdges.push(edge)
     })
 
@@ -31,7 +68,7 @@ export const GenerateListDataFlow = () => {
         nodeHeight
     }
 }
-export const ListIntent ={
+export const ListIntent = {
     "intents": [
         {
             "name": "projects/ariokiasisten/locations/global/agent/intents/027e8335-1ad1-4e00-8c26-6213a2e2855f",
