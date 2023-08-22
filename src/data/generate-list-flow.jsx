@@ -1,7 +1,7 @@
 import {ChatHistory} from "./chat-history";
-import {ListIntent} from "./list-intent";
+import {ListIntents} from "./list-intent";
 
-export const GenerateListDataFlow = () => {
+export const GenerateListDataFlow = ({parameters}) => {
     const position = {x: 0, y: 0};
     const edgeType = 'smoothstep';
     let nodeWidth = 200;
@@ -10,9 +10,9 @@ export const GenerateListDataFlow = () => {
     let initialEdges = []
     const listIntent = new Map();
 
-    let interactions = {}
+    let interactions = new Map();
     let first = false;
-    ChatHistory.interactions.forEach(({v2Response}, n) => {
+    ChatHistory?.interactions?.forEach(({v2Response}, n) => {
         let intent = v2Response?.queryResult?.intent?.name?.split('/').pop()
         if (interactions[intent]) {
             interactions[intent].count = interactions[intent].count + 1
@@ -28,14 +28,15 @@ export const GenerateListDataFlow = () => {
             }
         }
     })
-    ListIntent.intents.forEach(({name}) => {
+    ListIntents?.forEach(({name}) => {
         listIntent.set(name?.split('/').pop(), "intent");
     });
 
 
-    ListIntent.intents.forEach((intent, index) => {
+    ListIntents?.forEach((intent, index) => {
         let intentId = intent.name.split('/').pop()
         let source = intent?.parentFollowupIntentName?.split('/').pop()
+
         if (!listIntent.has(source) && source) {
             return
         }
@@ -59,6 +60,12 @@ export const GenerateListDataFlow = () => {
                     strokeWidth: 2,
                     stroke: '#FF0072',
                 }
+            }
+        }
+
+        if (parameters.summaryOnly) {
+            if (!interactions.has(source) && !active) {
+                return
             }
         }
 

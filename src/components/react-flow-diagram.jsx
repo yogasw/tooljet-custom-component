@@ -213,7 +213,7 @@ const ReactFlowDiagram = ({data}) => {
                 }}
                 snapToGrid={true}
                 attributionPosition="top-right"
-                minZoom={0.1}>
+                minZoom={0.0}>
                 <Controls/>
                 <Background color="#aaa" gap={16}/>
             </ReactFlow>

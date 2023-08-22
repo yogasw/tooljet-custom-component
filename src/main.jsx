@@ -92,7 +92,9 @@ const App = () => {
             <h1>React Flow</h1>
             <IFrame width="100%" height="400">
                 {/*<ReactFlowDiagram data={reactFLowData}/>*/}
-                <ReactFlowDiagram data={GenerateListDataFlow()}/>
+                <ReactFlowDiagram data={GenerateListDataFlow({
+                    parameters: {summaryOnly: true}
+                })}/>
             </IFrame>
             <h1>Conversation History</h1>
             <IFrame width="100%" height="400">
