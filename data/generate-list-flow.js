@@ -1,15 +1,16 @@
 import {ChatHistory} from "./chat-history.js";
-import {ListIntent} from "./list-intent.js";
-export const GenerateListDataFlow = () => {
+import {ListIntents} from "./list-intent.js";
+export const GenerateListDataFlow = ({parameters}) => {
   const position = {x: 0, y: 0};
   const edgeType = "smoothstep";
-  let nodeWidth = 172;
-  let nodeHeight = 36;
+  let nodeWidth = 200;
+  let nodeHeight = 30;
   let initialNodes = [];
   let initialEdges = [];
   const listIntent = new Map();
-  let interactions = {};
-  ChatHistory.interactions.forEach(({v2Response}, n) => {
+  let interactions = new Map();
+  let first = false;
+  ChatHistory?.interactions?.forEach(({v2Response}, n) => {
     let intent = v2Response?.queryResult?.intent?.name?.split("/").pop();
     if (interactions[intent]) {
       interactions[intent].count = interactions[intent].count + 1;
@@ -19,34 +20,44 @@ export const GenerateListDataFlow = () => {
         count: 1,
         history: `${n + 1}`
       };
+      if (!first) {
+        first = true;
+        interactions[intent].first = true;
+      }
     }
   });
-  ListIntent.intents.forEach(({name}) => {
+  ListIntents?.forEach(({name}) => {
     listIntent.set(name?.split("/").pop(), "intent");
   });
-  console.log(listIntent);
-  ListIntent.intents.forEach((intent, index) => {
+  ListIntents?.forEach((intent, index) => {
     let intentId = intent.name.split("/").pop();
     let source = intent?.parentFollowupIntentName?.split("/").pop();
     if (!listIntent.has(source) && source) {
       return;
     }
-    if (intent.displayName === "become_reseller_ensubmit") {
-      console.log("masuk", intent);
-      console.log("masuk", listIntent.has(intentId));
-    }
     let history = "";
     let style = "";
     let active = false;
-    if (interactions[intentId]) {
-      history = ` (${interactions[intentId].history})`;
+    let styleLine = {};
+    let interaction = interactions[intentId];
+    if (interaction) {
+      history = ` (${interaction.history})`;
       style = {
         backgroundColor: "#e6e6e9",
         borderColor: "#ddd",
         border: 1
       };
-      if (interactions[source]) {
+      if (interaction) {
         active = true;
+        styleLine = {
+          strokeWidth: 2,
+          stroke: "#FF0072"
+        };
+      }
+    }
+    if (parameters.summaryOnly) {
+      if (!interactions.has(source) && !active) {
+        return;
       }
     }
     const node = {
@@ -55,13 +66,17 @@ export const GenerateListDataFlow = () => {
       position,
       style
     };
+    if (interaction?.first) {
+      node.first = true;
+    }
     initialNodes.push(node);
     const edge = {
       id: `e${index}`,
       source,
       target: intentId,
       type: edgeType,
-      animated: active
+      animated: active,
+      style: styleLine
     };
     initialEdges.push(edge);
   });

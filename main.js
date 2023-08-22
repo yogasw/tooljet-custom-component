@@ -80,7 +80,9 @@ const App = () => {
     width: "100%",
     height: "400"
   }, /* @__PURE__ */ React.createElement(ReactFlowDiagram, {
-    data: GenerateListDataFlow()
+    data: GenerateListDataFlow({
+      parameters: {summaryOnly: true}
+    })
   })), /* @__PURE__ */ React.createElement("h1", null, "Conversation History"), /* @__PURE__ */ React.createElement(IFrame, {
     width: "100%",
     height: "400"

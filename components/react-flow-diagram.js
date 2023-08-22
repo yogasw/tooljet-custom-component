@@ -3,7 +3,9 @@ import ReactFlow, {
   addEdge,
   ConnectionLineType,
   useNodesState,
-  useEdgesState
+  useEdgesState,
+  Controls,
+  Background
 } from "https://cdn.jsdelivr.net/npm/reactflow/+esm";
 import dagre from "https://cdn.jsdelivr.net/npm/@dagrejs/dagre/+esm";
 import {createPortal} from "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm";
@@ -21,6 +23,7 @@ const HeadReactFlow = () => /* @__PURE__ */ React.createElement("head", null, /*
 const getLayoutedElements = (nodes, edges, nodeWidth, nodeHeight, direction = "LR") => {
   const isHorizontal = direction === "LR";
   dagreGraph.setGraph({rankdir: direction});
+  let firstNoteActive = null;
   nodes?.forEach((node) => {
     dagreGraph.setNode(node.id, {width: nodeWidth, height: nodeHeight});
   });
@@ -36,9 +39,12 @@ const getLayoutedElements = (nodes, edges, nodeWidth, nodeHeight, direction = "L
       x: nodeWithPosition.x - nodeWidth / 2,
       y: nodeWithPosition.y - nodeHeight / 2
     };
+    if (node?.first) {
+      firstNoteActive = node;
+    }
     return node;
   });
-  return {nodes, edges};
+  return {nodes, edges, firstNoteActive};
 };
 function useEscapeKey(handleClose) {
   const handleEscKey = useCallback((event) => {
@@ -163,10 +169,10 @@ const ReactFlowDiagram = ({data}) => {
   const [isOpen, showModal] = useState(false);
   const [childrenModal, setChildrenModal] = useState(false);
   const [cssModal, setCssModal] = useState("max-w-lg");
-  const {nodes: layoutedNodes, edges: layoutedEdges} = getLayoutedElements(initialNodes, initialEdges, nodeWidth, nodeHeight);
+  const {nodes: layoutedNodes, edges: layoutedEdges, firstNoteActive} = getLayoutedElements(initialNodes, initialEdges, nodeWidth, nodeHeight);
   const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge({...params, type: ConnectionLineType.SmoothStep, animated: true}, eds)), []);
+  const onConnect = useCallback((params) => setEdges((eds) => addEdge({...params, type: ConnectionLineType.SmoothStep}, eds)), []);
   return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(HeadReactFlow, null), /* @__PURE__ */ React.createElement(Modal, {
     isOpen,
     children: childrenModal,
@@ -179,12 +185,17 @@ const ReactFlowDiagram = ({data}) => {
     onEdgesChange,
     onConnect,
     connectionLineType: ConnectionLineType.SmoothStep,
-    fitView: true,
     onNodeClick: (event, element) => {
       setChildrenModal(DetailIntent());
       showModal(true);
-    }
-  }));
+    },
+    snapToGrid: true,
+    attributionPosition: "top-right",
+    minZoom: 0
+  }, /* @__PURE__ */ React.createElement(Controls, null), /* @__PURE__ */ React.createElement(Background, {
+    color: "#aaa",
+    gap: 16
+  })));
 };
 const IFrame = ({
   children,
