@@ -211,6 +211,8 @@ const ReactFlowDiagram = ({data}) => {
                     setChildrenModal(DetailIntent())
                     showModal(true)
                 }}
+                zoomOnScroll={false}
+                panOnScroll={true}
                 snapToGrid={true}
                 attributionPosition="top-right"
                 minZoom={0.0}>
