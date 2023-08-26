@@ -20,6 +20,14 @@ export const IFrame = ({
   const [contentRef, setContentRef] = useState(null);
   const mountNode = contentRef?.contentWindow?.document?.body;
   return /* @__PURE__ */ React.createElement("iframe", {
+    width: "100%",
+    height: "100%",
+    style: {
+      display: "block",
+      border: "none",
+      height: "50vh",
+      width: "99vw"
+    },
     ...props,
     ref: setContentRef
   }, mountNode && createPortal(children, mountNode));
