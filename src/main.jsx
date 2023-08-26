@@ -23,7 +23,12 @@ export const IFrame = ({
     const mountNode =
         contentRef?.contentWindow?.document?.body
     return (
-        <iframe {...props} ref={setContentRef}>
+        <iframe width="100%" height="100%" style={{
+            display: "block",       /* iframes are inline by default */
+            border: "none",        /* Reset default border */
+            height: "50vh",        /* Viewport-relative units */
+            width: "99vw"
+        }} {...props} ref={setContentRef}>
             {mountNode && createPortal(children, mountNode)}
         </iframe>
     )

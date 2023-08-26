@@ -1,4 +1,4 @@
-export const ListIntent = {
+export const ListIntents = {
     "intents": [
         {
             "name": "projects/ariokiasisten/locations/global/agent/intents/027e8335-1ad1-4e00-8c26-6213a2e2855f",
