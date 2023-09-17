@@ -14,6 +14,7 @@ import ConversationHistory from "./components/conversation-history";
 import ReactFlowDiagram from "./components/react-flow-diagram";
 import {ChatHistory} from "./data/chat-history";
 import {GenerateListDataFlow} from "./data/generate-list-flow";
+import DownloadZip from "./components/download-zip";
 
 export const IFrame = ({
                            children,
@@ -94,6 +95,8 @@ const App = () => {
     }
     return (
         <div>
+            <h1>Download Zip</h1>
+            <DownloadZip/>
             <h1>React Flow</h1>
             <IFrame width="100%" height="400">
                 {/*<ReactFlowDiagram data={reactFLowData}/>*/}
