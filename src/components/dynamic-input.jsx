@@ -133,7 +133,7 @@ const stylesDynamicInput = {
 };
 export default DynamicInput;
 
-// //for tooljet
-// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom';
-// const ConnectedComponent = Tooljet.connectComponent(DateTimeLocal);
-// createRoot(document.body).render(<DynamicInput/>);
+/*//for tooljet
+import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
+const ConnectedComponent = Tooljet.connectComponent(DynamicInput);
+createRoot(document.body).render(<ConnectedComponent/>);*/

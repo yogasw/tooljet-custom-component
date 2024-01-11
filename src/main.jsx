@@ -96,7 +96,7 @@ const App = () => {
     return (
         <div>
             <h1>Download Zip</h1>
-            <DownloadZip/>
+            <DownloadZip data={data}/>
             <h1>React Flow</h1>
             <IFrame width="100%" height="400">
                 {/*<ReactFlowDiagram data={reactFLowData}/>*/}
