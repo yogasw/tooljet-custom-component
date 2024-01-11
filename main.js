@@ -13,6 +13,7 @@ import ConversationHistory from "./components/conversation-history.js";
 import ReactFlowDiagram from "./components/react-flow-diagram.js";
 import {ChatHistory} from "./data/chat-history.js";
 import {GenerateListDataFlow} from "./data/generate-list-flow.js";
+import DownloadZip from "./components/download-zip.js";
 export const IFrame = ({
   children,
   ...props
@@ -84,7 +85,9 @@ const App = () => {
   const runQuery = (query) => {
     console.log("run query", query);
   };
-  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "React Flow"), /* @__PURE__ */ React.createElement(IFrame, {
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "Download Zip"), /* @__PURE__ */ React.createElement(DownloadZip, {
+    data
+  }), /* @__PURE__ */ React.createElement("h1", null, "React Flow"), /* @__PURE__ */ React.createElement(IFrame, {
     width: "100%",
     height: "400"
   }, /* @__PURE__ */ React.createElement(ReactFlowDiagram, {
