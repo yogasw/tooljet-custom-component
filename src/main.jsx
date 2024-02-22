@@ -15,6 +15,7 @@ import ReactFlowDiagram from "./components/react-flow-diagram";
 import {ChatHistory} from "./data/chat-history";
 import {GenerateListDataFlow} from "./data/generate-list-flow";
 import DownloadZip from "./components/download-zip";
+import VisTimeline from "./components/vis-timeline";
 
 export const IFrame = ({
                            children,
@@ -73,6 +74,37 @@ const reactFLowData = {
 
 const App = () => {
 
+    // create groups
+    var numberOfGroups = 3;
+    var groups = []
+    for (var i = 0; i < numberOfGroups; i++) {
+        groups.push({
+            id: i,
+            content: 'Truck ' + i
+        })
+    }
+
+    // create items
+    var numberOfItems = 3;
+    var items = [];
+    var itemsPerGroup = Math.round(numberOfItems/numberOfGroups);
+    for (var truck = 0; truck < numberOfGroups; truck++) {
+        var date = new Date();
+        for (var order = 0; order < itemsPerGroup; order++) {
+            date.setHours(date.getHours() +  4 * (Math.random() < 0.2));
+            var start = new Date(date);
+            date.setHours(date.getHours() + 2 + Math.floor(Math.random()*4));
+            var end = new Date(date);
+            items.push({
+                id: order + itemsPerGroup * truck,
+                group: truck,
+                start: start,
+                end: end,
+                content: 'Order ' + order
+            });
+        }
+    }
+
     // const [data, setData] = React.useState();
     const [data, setData] = React.useState(
         {
@@ -84,6 +116,8 @@ const App = () => {
                 {"id": "D", "display": "D"}
             ],
             "buttonText": "Run",
+            "items":items,
+            "groups":groups,
         }
     );
     const updateData = (newData) => {
@@ -95,6 +129,26 @@ const App = () => {
     }
     return (
         <div>
+            <h2>Input Data:</h2>
+            <TextareaAutosize
+                style={{
+                    width: "100%",
+                }}
+                placeholder="Input Data"
+                value={JSON.stringify(data, null, 2)}
+                onChange={(e) => {
+                    //setData()
+                    console.log(e.target.value)
+                    try {
+                        setData(JSON.parse(e.target.value))
+                    } catch (e) {
+                        setData(e.target?.value)
+                    }
+                }}
+            />
+
+            <h1>Vis timline with React</h1>
+            <VisTimeline data={data} updateData={updateData} runQuery={runQuery}/>
             <h1>Download Zip</h1>
             <DownloadZip data={data}/>
             <h1>React Flow</h1>
@@ -137,24 +191,6 @@ const App = () => {
                 data={data}
                 runQuery={runQuery}
             />
-            <h2>Input Data:</h2>
-            <TextareaAutosize
-                style={{
-                    width: "100%",
-                }}
-                placeholder="Input Data"
-                value={JSON.stringify(data, null, 2)}
-                onChange={(e) => {
-                    //setData()
-                    console.log(e.target.value)
-                    try {
-                        setData(JSON.parse(e.target.value))
-                    } catch (e) {
-                        setData(e.target?.value)
-                    }
-                }}
-            />
-
             <h2>MyCustomComponent</h2>
 
             <MyCustomComponent
