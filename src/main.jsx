@@ -129,7 +129,10 @@ const App = () => {
     }
     return (
         <div>
+            <h1>Vis timline with React</h1>
+            <VisTimeline data={data} updateData={updateData} runQuery={runQuery}/>
             <h2>Input Data:</h2>
+
             <TextareaAutosize
                 style={{
                     width: "100%",
@@ -147,8 +150,7 @@ const App = () => {
                 }}
             />
 
-            <h1>Vis timline with React</h1>
-            <VisTimeline data={data} updateData={updateData} runQuery={runQuery}/>
+
             <h1>Download Zip</h1>
             <DownloadZip data={data}/>
             <h1>React Flow</h1>
