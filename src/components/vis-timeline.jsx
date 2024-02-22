@@ -89,11 +89,11 @@ class VisTimeline extends React.Component {
     }
 };
 
-// export default VisTimeline;
+export default VisTimeline;
 
-/*for tooljet*/
-import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom/+esm';
-
-const ConnectedComponent = Tooljet.connectComponent(VisTimeline);
-createRoot(document.body).render(<ConnectedComponent/>);
+// /*for tooljet*/
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom/+esm';
+//
+// const ConnectedComponent = Tooljet.connectComponent(VisTimeline);
+// createRoot(document.body).render(<ConnectedComponent/>);
 
