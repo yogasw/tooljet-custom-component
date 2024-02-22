@@ -14,6 +14,7 @@ import ReactFlowDiagram from "./components/react-flow-diagram.js";
 import {ChatHistory} from "./data/chat-history.js";
 import {GenerateListDataFlow} from "./data/generate-list-flow.js";
 import DownloadZip from "./components/download-zip.js";
+import VisTimeline from "./components/vis-timeline.js";
 export const IFrame = ({
   children,
   ...props
@@ -68,6 +69,33 @@ const reactFLowData = {
   nodeHeight: 36
 };
 const App = () => {
+  var numberOfGroups = 3;
+  var groups = [];
+  for (var i = 0; i < numberOfGroups; i++) {
+    groups.push({
+      id: i,
+      content: "Truck " + i
+    });
+  }
+  var numberOfItems = 3;
+  var items = [];
+  var itemsPerGroup = Math.round(numberOfItems / numberOfGroups);
+  for (var truck = 0; truck < numberOfGroups; truck++) {
+    var date = new Date();
+    for (var order = 0; order < itemsPerGroup; order++) {
+      date.setHours(date.getHours() + 4 * (Math.random() < 0.2));
+      var start = new Date(date);
+      date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));
+      var end = new Date(date);
+      items.push({
+        id: order + itemsPerGroup * truck,
+        group: truck,
+        start,
+        end,
+        content: "Order " + order
+      });
+    }
+  }
   const [data, setData] = React.useState({
     value: 'Example |="{{B}}"',
     list: [
@@ -76,7 +104,9 @@ const App = () => {
       {id: "C", display: "C"},
       {id: "D", display: "D"}
     ],
-    buttonText: "Run"
+    buttonText: "Run",
+    items,
+    groups
   });
   const updateData = (newData) => {
     setData({...data, ...newData});
@@ -85,7 +115,25 @@ const App = () => {
   const runQuery = (query) => {
     console.log("run query", query);
   };
-  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "Download Zip"), /* @__PURE__ */ React.createElement(DownloadZip, {
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "Vis timline with React"), /* @__PURE__ */ React.createElement(VisTimeline, {
+    data,
+    updateData,
+    runQuery
+  }), /* @__PURE__ */ React.createElement("h2", null, "Input Data:"), /* @__PURE__ */ React.createElement(TextareaAutosize, {
+    style: {
+      width: "100%"
+    },
+    placeholder: "Input Data",
+    value: JSON.stringify(data, null, 2),
+    onChange: (e) => {
+      console.log(e.target.value);
+      try {
+        setData(JSON.parse(e.target.value));
+      } catch (e2) {
+        setData(e2.target?.value);
+      }
+    }
+  }), /* @__PURE__ */ React.createElement("h1", null, "Download Zip"), /* @__PURE__ */ React.createElement(DownloadZip, {
     data
   }), /* @__PURE__ */ React.createElement("h1", null, "React Flow"), /* @__PURE__ */ React.createElement(IFrame, {
     width: "100%",
@@ -116,20 +164,6 @@ const App = () => {
     updateData,
     data,
     runQuery
-  }), /* @__PURE__ */ React.createElement("h2", null, "Input Data:"), /* @__PURE__ */ React.createElement(TextareaAutosize, {
-    style: {
-      width: "100%"
-    },
-    placeholder: "Input Data",
-    value: JSON.stringify(data, null, 2),
-    onChange: (e) => {
-      console.log(e.target.value);
-      try {
-        setData(JSON.parse(e.target.value));
-      } catch (e2) {
-        setData(e2.target?.value);
-      }
-    }
   }), /* @__PURE__ */ React.createElement("h2", null, "MyCustomComponent"), /* @__PURE__ */ React.createElement(MyCustomComponent, {
     updateData,
     data,
