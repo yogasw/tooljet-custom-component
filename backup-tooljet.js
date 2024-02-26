@@ -2,7 +2,7 @@
 
 import React, {useState, useEffect, Component} from "https://esm.sh/react";
 import {Mention, MentionsInput} from "https://esm.sh/react-mentions";
-import TextareaAutosize from "https://cdn.esm.sh/@mui/material/TextareaAutosize";
+import TextareaAutosize from "https://cdn.esm.sh/@mui/material@5.15.0/TextareaAutosize";
 import {createPortal} from 'https://esm.sh/stable/react-dom';
 
 const defaultStyle = {
@@ -165,7 +165,7 @@ const Timer = () => {
 }
 
 
-import Button from 'https://cdn.esm.sh/@mui/material/Button';
+import Button from 'https://cdn.esm.sh/@mui/material@5.15.0/Button';
 
 class EsmSh extends React.Component {
     render() {
@@ -173,7 +173,7 @@ class EsmSh extends React.Component {
     }
 }
 
-import Container from 'https://cdn.esm.sh/@mui/material/Container';
+import Container from 'https://cdn.esm.sh/@mui/material@5.15.0/Container';
 
 const MyCustomComponent = ({data, updateData, runQuery}) => (
     <Container>
@@ -230,8 +230,8 @@ const DateTimeLocal = ({data, updateData, runQuery}) => {
     );
 }
 
-import TextField from 'https://cdn.esm.sh/@mui/material/TextField';
-import Typography from 'https://cdn.esm.sh/@mui/material/Typography';
+import TextField from 'https://cdn.esm.sh/@mui/material@5.15.0/TextField';
+import Typography from 'https://cdn.esm.sh/@mui/material@5.15.0/Typography';
 import {FiPlus, FiTrash} from "https://cdn.esm.sh/react-icons/fi";
 
 const stylesDynamicInput = {
