@@ -3,7 +3,7 @@ import {createPortal, createRoot} from "https://cdn.jsdelivr.net/npm/react-dom@1
 import DynamicInput from "./components/dynamic-input.js";
 import DateTimeLocal from "./components/date-time-local.js";
 import MyCustomComponent from "./components/my-custom-component.js";
-import TextareaAutosize from "https://cdn.jsdelivr.net/npm/@mui/material/TextareaAutosize/+esm";
+import TextareaAutosize from "https://cdn.jsdelivr.net/npm/@mui/material@5.15.0/TextareaAutosize/+esm";
 import ReactAutocompleteInput from "./components/react-autocomplete-input.js";
 import EsmSh from "./components/esm-sh.js";
 import Timer from "./components/timer.js";
