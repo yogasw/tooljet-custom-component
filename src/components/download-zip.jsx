@@ -37,6 +37,6 @@ class DownloadZip extends React.Component {
 
 export default DownloadZip;
 // for tooljet
-// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom/+esm';
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esmm';
 // const ConnectedComponent = Tooljet.connectComponent(DownloadZip);
 // createRoot(document.body).render(<ConnectedComponent/>);
