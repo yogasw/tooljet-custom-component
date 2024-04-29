@@ -559,7 +559,7 @@ const AvatarHuman = (props) => (
 export default ConversationHistory;
 //
 // // for tooljet
-// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esmm';
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
 // const ConnectedComponent = Tooljet.connectComponent(ConversationHistory);
 // createRoot(document.body).render(<ConnectedComponent/>);
 
