@@ -1,5 +1,5 @@
 import React, {useCallback, useState, useEffect, useRef} from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
-import {Timeline, DataSet} from 'https://cdn.jsdelivr.net/npm/vis-timeline/standalone/+esm';
+import {Timeline, DataSet} from 'https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/standalone/+esm';
 import ReactDOM from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
 
 class GroupTemplate extends React.Component {
