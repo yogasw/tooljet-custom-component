@@ -68,6 +68,7 @@ class VisTimeline extends React.Component {
             //     ReactDOM.unmountComponentAtNode(element);
             //     return ReactDOM.render(<GroupTemplate group={group}/>, element);
             // }
+            locale: 'en',
         }
         const {items, groups} = this.initData();
         var container = document.getElementById('visualization');
