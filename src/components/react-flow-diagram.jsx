@@ -5,8 +5,8 @@ import ReactFlow, {
     useNodesState,
     useEdgesState,
     Controls, Background
-} from "https://cdn.jsdelivr.net/npm/reactflow/+esm";
-import dagre from 'https://cdn.jsdelivr.net/npm/@dagrejs/dagre/+esm';
+} from "https://cdn.jsdelivr.net/npm/reactflow@11.11.2/+esm";
+import dagre from 'https://cdn.jsdelivr.net/npm/@dagrejs/dagre@1.1.2/+esm';
 import {createPortal} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
 
 const dagreGraph = new dagre.graphlib.Graph();
