@@ -1,5 +1,5 @@
 import React, {useCallback, useState, useEffect, useRef} from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
-import {Timeline, DataSet} from "https://cdn.jsdelivr.net/npm/vis-timeline/standalone/+esm";
+import {Timeline, DataSet} from "https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/standalone/+esm";
 import ReactDOM from "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm";
 class GroupTemplate extends React.Component {
   render() {
@@ -41,7 +41,11 @@ class VisTimeline extends React.Component {
       orientation: "top",
       start: new Date(),
       end: new Date(1e3 * 60 * 60 * 24 + new Date().valueOf()),
-      editable: false
+      editable: false,
+      locale: "en",
+      tooltip: {
+        followMouse: true
+      }
     };
     const {items, groups} = this.initData();
     var container = document.getElementById("visualization");
