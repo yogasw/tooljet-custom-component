@@ -62,7 +62,7 @@ export const GenerateListDataFlow = ({parameters}) => {
     }
     const node = {
       id: intentId,
-      data: {label: `${intent.displayName}${history}`},
+      data: {label: `${intent.displayName}${history}`, data: intent},
       position,
       style
     };

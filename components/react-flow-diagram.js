@@ -86,15 +86,49 @@ const Modal = ({isOpen, showModal, children, cssModal}) => {
   }, children)));
 };
 const DetailIntent = (data) => {
+  const {label, data: intent} = data;
+  const {
+    action,
+    displayName,
+    inputContextNames,
+    messages,
+    name,
+    outputContexts,
+    parentFollowupIntentName,
+    rootFollowupIntentName
+  } = intent;
+  console.log("data intent: ", intent);
+  let arrName = name.split("/");
+  let projectName = arrName[1];
+  let id = arrName[arrName.length - 1];
+  let url = `https://dialogflow.cloud.google.com/#/agent/${projectName}/editIntent/${id}/`;
+  let listInputContext = "";
+  let listOutputContext = "";
+  if (inputContextNames) {
+    inputContextNames?.forEach((name2) => {
+      let nameStr = name2.split("/").pop();
+      listInputContext += `${nameStr} `;
+    });
+  }
+  if (outputContexts) {
+    outputContexts?.forEach(({name: name2, lifespanCount}) => {
+      let nameStr = name2.split("/").pop();
+      listOutputContext += `${nameStr}(${lifespanCount}) `;
+    });
+  }
   return /* @__PURE__ */ React.createElement("div", {
     className: "bg-white shadow overflow-hidden sm:rounded-lg"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "px-4 py-5 sm:px-6"
   }, /* @__PURE__ */ React.createElement("h3", {
     className: "text-lg leading-6 font-medium text-gray-900"
-  }, "Intent Detail"), /* @__PURE__ */ React.createElement("p", {
+  }, displayName), /* @__PURE__ */ React.createElement("p", {
     className: "mt-1 max-w-2xl text-sm text-gray-500"
-  }, "Personal details and application.")), /* @__PURE__ */ React.createElement("div", {
+  }, /* @__PURE__ */ React.createElement("a", {
+    target: "_blank",
+    rel: "noopener noreferrer",
+    href: url
+  }, "Link Dialogflow"))), /* @__PURE__ */ React.createElement("div", {
     className: "border-t border-gray-200 px-4 py-5 sm:px-6"
   }, /* @__PURE__ */ React.createElement("dl", {
     className: "grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2"
@@ -102,64 +136,27 @@ const DetailIntent = (data) => {
     className: "sm:col-span-1"
   }, /* @__PURE__ */ React.createElement("dt", {
     className: "text-sm font-medium text-gray-500"
-  }, "Full name"), /* @__PURE__ */ React.createElement("dd", {
+  }, "Input Context"), /* @__PURE__ */ React.createElement("dd", {
     className: "mt-1 text-sm text-gray-900"
-  }, "Margot Foster")), /* @__PURE__ */ React.createElement("div", {
+  }, listInputContext)), /* @__PURE__ */ React.createElement("div", {
     className: "sm:col-span-1"
   }, /* @__PURE__ */ React.createElement("dt", {
     className: "text-sm font-medium text-gray-500"
-  }, "Application for"), /* @__PURE__ */ React.createElement("dd", {
+  }, "Output Context"), /* @__PURE__ */ React.createElement("dd", {
     className: "mt-1 text-sm text-gray-900"
-  }, "Backend Developer")), /* @__PURE__ */ React.createElement("div", {
+  }, listOutputContext)), /* @__PURE__ */ React.createElement("div", {
     className: "sm:col-span-1"
   }, /* @__PURE__ */ React.createElement("dt", {
     className: "text-sm font-medium text-gray-500"
-  }, "Email address"), /* @__PURE__ */ React.createElement("dd", {
+  }, "Action"), /* @__PURE__ */ React.createElement("dd", {
     className: "mt-1 text-sm text-gray-900"
-  }, "margotfoster@example.com")), /* @__PURE__ */ React.createElement("div", {
-    className: "sm:col-span-1"
-  }, /* @__PURE__ */ React.createElement("dt", {
-    className: "text-sm font-medium text-gray-500"
-  }, "Salary expectation"), /* @__PURE__ */ React.createElement("dd", {
-    className: "mt-1 text-sm text-gray-900"
-  }, "$120,000")), /* @__PURE__ */ React.createElement("div", {
+  }, action)), /* @__PURE__ */ React.createElement("div", {
     className: "sm:col-span-2"
   }, /* @__PURE__ */ React.createElement("dt", {
     className: "text-sm font-medium text-gray-500"
-  }, "About"), /* @__PURE__ */ React.createElement("dd", {
-    className: "mt-1 text-sm text-gray-900"
-  }, "Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.")), /* @__PURE__ */ React.createElement("div", {
-    className: "sm:col-span-2"
-  }, /* @__PURE__ */ React.createElement("dt", {
-    className: "text-sm font-medium text-gray-500"
-  }, "Attachments"), /* @__PURE__ */ React.createElement("dd", {
-    className: "mt-1 text-sm text-gray-900"
-  }, /* @__PURE__ */ React.createElement("ul", {
-    role: "list",
-    className: "border border-gray-200 rounded-md divide-y divide-gray-200"
-  }, /* @__PURE__ */ React.createElement("li", {
-    className: "pl-3 pr-4 py-3 flex items-center justify-between text-sm"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "w-0 flex-1 flex items-center"
-  }, /* @__PURE__ */ React.createElement("span", {
-    className: "ml-2 flex-1 w-0 truncate"
-  }, "resume_back_end_developer.pdf")), /* @__PURE__ */ React.createElement("div", {
-    className: "ml-4 flex-shrink-0"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#",
-    className: "font-medium text-indigo-600 hover:text-indigo-500"
-  }, "Download"))), /* @__PURE__ */ React.createElement("li", {
-    className: "pl-3 pr-4 py-3 flex items-center justify-between text-sm"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "w-0 flex-1 flex items-center"
-  }, /* @__PURE__ */ React.createElement("span", {
-    className: "ml-2 flex-1 w-0 truncate"
-  }, "coverletter_back_end_developer.pdf")), /* @__PURE__ */ React.createElement("div", {
-    className: "ml-4 flex-shrink-0"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#",
-    className: "font-medium text-indigo-600 hover:text-indigo-500"
-  }, "Download")))))))));
+  }), /* @__PURE__ */ React.createElement("dd", {
+    className: "mt-1 text-sm text-gray-900 gray"
+  }, name)))));
 };
 const ReactFlowDiagram = ({data}) => {
   const {initialNodes, initialEdges, nodeWidth, nodeHeight} = data;
@@ -186,7 +183,8 @@ const ReactFlowDiagram = ({data}) => {
     onConnect,
     connectionLineType: ConnectionLineType.SmoothStep,
     onNodeClick: (event, element) => {
-      setChildrenModal(DetailIntent());
+      const {data: data2} = element;
+      setChildrenModal(DetailIntent(data2));
       showModal(true);
     },
     zoomOnScroll: false,
