@@ -99,69 +99,62 @@ const Modal = ({isOpen, showModal, children, cssModal}) => {
 }
 
 const DetailIntent = (data) => {
+    const {label, data: intent} = data;
+    const {
+        action,
+        displayName,
+        inputContextNames,
+        messages,
+        name,
+        outputContexts,
+        parentFollowupIntentName,
+        rootFollowupIntentName
+    } = intent;
+    console.log("data intent: ", intent)
+    let arrName = name.split("/")
+    let projectName = arrName[1];
+    let id = arrName[arrName.length - 1];
+    let url = `https://dialogflow.cloud.google.com/#/agent/${projectName}/editIntent/${id}/`
+    let listInputContext = ""
+    let listOutputContext = ""
+    if (inputContextNames) {
+        inputContextNames?.forEach((name) => {
+            let nameStr = name.split("/").pop()
+            listInputContext += `${nameStr} `
+        })
+    }
+
+    if (outputContexts) {
+        outputContexts?.forEach(({name,lifespanCount}) => {
+            let nameStr = name.split("/").pop()
+            listOutputContext += `${nameStr}(${lifespanCount}) `
+        })
+    }
     return (
         <div className="bg-white shadow overflow-hidden sm:rounded-lg">
             <div className="px-4 py-5 sm:px-6">
-                <h3 className="text-lg leading-6 font-medium text-gray-900">Intent Detail</h3>
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">Personal details and application.</p>
+                <h3 className="text-lg leading-6 font-medium text-gray-900">{displayName}</h3>
+                <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                    <a target="_blank" rel="noopener noreferrer" href={url}>Link Dialogflow</a>
+                </p>
             </div>
             <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
                 <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                     <div className="sm:col-span-1">
-                        <dt className="text-sm font-medium text-gray-500">Full name</dt>
-                        <dd className="mt-1 text-sm text-gray-900">Margot Foster</dd>
+                        <dt className="text-sm font-medium text-gray-500">Input Context</dt>
+                        <dd className="mt-1 text-sm text-gray-900">{listInputContext}</dd>
                     </div>
                     <div className="sm:col-span-1">
-                        <dt className="text-sm font-medium text-gray-500">Application for</dt>
-                        <dd className="mt-1 text-sm text-gray-900">Backend Developer</dd>
+                        <dt className="text-sm font-medium text-gray-500">Output Context</dt>
+                        <dd className="mt-1 text-sm text-gray-900">{listOutputContext}</dd>
                     </div>
                     <div className="sm:col-span-1">
-                        <dt className="text-sm font-medium text-gray-500">Email address</dt>
-                        <dd className="mt-1 text-sm text-gray-900">margotfoster@example.com</dd>
-                    </div>
-                    <div className="sm:col-span-1">
-                        <dt className="text-sm font-medium text-gray-500">Salary expectation</dt>
-                        <dd className="mt-1 text-sm text-gray-900">$120,000</dd>
+                        <dt className="text-sm font-medium text-gray-500">Action</dt>
+                        <dd className="mt-1 text-sm text-gray-900">{action}</dd>
                     </div>
                     <div className="sm:col-span-2">
-                        <dt className="text-sm font-medium text-gray-500">About</dt>
-                        <dd className="mt-1 text-sm text-gray-900">
-                            Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa
-                            consequat. Excepteur
-                            qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident.
-                            Irure nostrud
-                            pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
-                        </dd>
-                    </div>
-                    <div className="sm:col-span-2">
-                        <dt className="text-sm font-medium text-gray-500">Attachments</dt>
-                        <dd className="mt-1 text-sm text-gray-900">
-                            <ul role="list" className="border border-gray-200 rounded-md divide-y divide-gray-200">
-                                <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                    <div className="w-0 flex-1 flex items-center">
-                                        {/*<PaperClipIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />*/}
-                                        <span className="ml-2 flex-1 w-0 truncate">resume_back_end_developer.pdf</span>
-                                    </div>
-                                    <div className="ml-4 flex-shrink-0">
-                                        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                                            Download
-                                        </a>
-                                    </div>
-                                </li>
-                                <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                    <div className="w-0 flex-1 flex items-center">
-                                        {/*<PaperClipIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />*/}
-                                        <span
-                                            className="ml-2 flex-1 w-0 truncate">coverletter_back_end_developer.pdf</span>
-                                    </div>
-                                    <div className="ml-4 flex-shrink-0">
-                                        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                                            Download
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </dd>
+                        <dt className="text-sm font-medium text-gray-500"></dt>
+                        <dd className="mt-1 text-sm text-gray-900 gray">{name}</dd>
                     </div>
                 </dl>
             </div>
@@ -208,7 +201,8 @@ const ReactFlowDiagram = ({data}) => {
                 connectionLineType={ConnectionLineType.SmoothStep}
                 // fitView
                 onNodeClick={(event, element) => {
-                    setChildrenModal(DetailIntent())
+                    const {data} = element;
+                    setChildrenModal(DetailIntent(data))
                     showModal(true)
                 }}
                 zoomOnScroll={false}
