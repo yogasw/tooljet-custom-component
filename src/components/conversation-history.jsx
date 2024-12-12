@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useCallback} from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
-import moment from 'https://cdn.jsdelivr.net/npm/moment/+esm';
-import {LuFileJson2} from "https://cdn.jsdelivr.net/npm/react-icons/lu/+esm";
+import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.0/+esm';
+import {LuFileJson2} from "https://cdn.jsdelivr.net/npm/react-icons@5.0.0/lu/+esm";
 
 const HeadConversationHistory = () => (
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"/>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@v2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
     </head>
 );
 const KEY_NAME_ESC = 'Escape';
@@ -557,6 +557,7 @@ const AvatarHuman = (props) => (
 );
 
 export default ConversationHistory;
+//
 //
 // // for tooljet
 // import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';

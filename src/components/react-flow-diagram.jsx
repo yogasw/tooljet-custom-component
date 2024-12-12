@@ -17,7 +17,7 @@ const KEY_EVENT_TYPE = 'keyup';
 const HeadReactFlow = () => (
     <head>
         <link href="https://cdn.jsdelivr.net/npm/reactflow/dist/style.css" rel="stylesheet"/>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"/>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@v2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
     </head>
 );
 
