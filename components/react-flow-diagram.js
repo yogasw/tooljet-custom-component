@@ -17,7 +17,7 @@ const HeadReactFlow = () => /* @__PURE__ */ React.createElement("head", null, /*
   href: "https://cdn.jsdelivr.net/npm/reactflow/dist/style.css",
   rel: "stylesheet"
 }), /* @__PURE__ */ React.createElement("link", {
-  href: "https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css",
+  href: "https://cdn.jsdelivr.net/npm/tailwindcss@v2.2.19/dist/tailwind.min.css",
   rel: "stylesheet"
 }));
 const getLayoutedElements = (nodes, edges, nodeWidth, nodeHeight, direction = "LR") => {

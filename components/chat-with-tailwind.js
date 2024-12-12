@@ -1,6 +1,6 @@
 import * as React from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
 const HeadTailwind = () => /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("link", {
-  href: "https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css",
+  href: "https://cdn.jsdelivr.net/npm/tailwindcss@v2.2.19/dist/tailwind.min.css",
   rel: "stylesheet"
 }));
 const ChatWithTailwind = ({data, updateData, runQuery}) => /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(HeadTailwind, null), /* @__PURE__ */ React.createElement("div", {

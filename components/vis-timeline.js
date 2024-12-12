@@ -1,6 +1,6 @@
-import React, {useCallback, useState, useEffect, useRef} from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
-import {Timeline, DataSet} from "https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/standalone/+esm";
-import ReactDOM from "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm";
+import React from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
+import {DataSet, Timeline} from "https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/standalone/+esm";
+import {createRoot} from "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm";
 class GroupTemplate extends React.Component {
   render() {
     var {group} = this.props;
@@ -36,7 +36,7 @@ class VisTimeline extends React.Component {
     }
     return {items, groups};
   }
-  initTimeline() {
+  initTimeline(runQuery) {
     var options = {
       orientation: "top",
       start: new Date(),
@@ -50,13 +50,23 @@ class VisTimeline extends React.Component {
     const {items, groups} = this.initData();
     var container = document.getElementById("visualization");
     this.timeline = new Timeline(container, items, groups, options);
+    this.timeline.on("doubleClick", onDoubleClick);
+    function onDoubleClick({item: i}) {
+      console.log(runQuery);
+      if (!i)
+        return;
+      let item = items.get(i);
+      if (runQuery) {
+        runQuery("subscribe_double_click", {item});
+      }
+    }
   }
   componentDidMount() {
-    return this.initTimeline();
+    return this.initTimeline(this.props.runQuery);
   }
   componentDidUpdate() {
     this.timeline.destroy();
-    return this.initTimeline();
+    return this.initTimeline(this.props.runQuery);
   }
   render() {
     return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", {
@@ -64,5 +74,4 @@ class VisTimeline extends React.Component {
     }));
   }
 }
-;
 export default VisTimeline;
