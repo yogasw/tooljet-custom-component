@@ -123,7 +123,7 @@ const DetailIntent = (data) => {
   }, /* @__PURE__ */ React.createElement("h3", {
     className: "text-lg leading-6 font-medium text-gray-900"
   }, displayName), /* @__PURE__ */ React.createElement("p", {
-    className: "mt-1 max-w-2xl text-sm text-gray-500"
+    className: "mt-1 max-w-2xl text-sm text-blue-500"
   }, /* @__PURE__ */ React.createElement("a", {
     target: "_blank",
     rel: "noopener noreferrer",
