@@ -15,6 +15,7 @@ import {ChatHistory} from "./data/chat-history.js";
 import {GenerateListDataFlow} from "./data/generate-list-flow.js";
 import DownloadZip from "./components/download-zip.js";
 import VisTimeline from "./components/vis-timeline.js";
+import RetejsBasic from "./components/retejs-basic.js";
 export const IFrame = ({
   children,
   ...props
@@ -150,7 +151,7 @@ const App = () => {
   })), /* @__PURE__ */ React.createElement("h1", null, "Chat Component with Tailwind Css"), /* @__PURE__ */ React.createElement(IFrame, {
     width: "100%",
     height: "400"
-  }, /* @__PURE__ */ React.createElement(ChatWithTailwind, null)), /* @__PURE__ */ React.createElement("h1", null, "Basic Primitives Diagrams for React"), /* @__PURE__ */ React.createElement(PrimitivesDiagrams, null), /* @__PURE__ */ React.createElement("h1", null, "ReactAutocompleteInput"), /* @__PURE__ */ React.createElement(ReactAutocompleteInput, {
+  }, /* @__PURE__ */ React.createElement(ChatWithTailwind, null)), /* @__PURE__ */ React.createElement("h1", null, "Retejs Basic"), /* @__PURE__ */ React.createElement("h1", null, "ReactAutocompleteInput"), /* @__PURE__ */ React.createElement(ReactAutocompleteInput, {
     updateData: (data2) => {
       updateData(data2);
     },
