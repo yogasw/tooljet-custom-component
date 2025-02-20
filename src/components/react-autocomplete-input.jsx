@@ -1,5 +1,5 @@
 import * as React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
-import {Mention, MentionsInput} from "https://cdn.jsdelivr.net/npm/react-mentions/+esm";
+import {Mention, MentionsInput} from "https://cdn.jsdelivr.net/npm/react-mentions@4.4.10/+esm";
 
 const {useState, useEffect} = React;
 const defaultStyle = {

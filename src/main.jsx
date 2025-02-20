@@ -16,6 +16,7 @@ import {ChatHistory} from "./data/chat-history";
 import {GenerateListDataFlow} from "./data/generate-list-flow";
 import DownloadZip from "./components/download-zip";
 import VisTimeline from "./components/vis-timeline";
+import RetejsBasic from "./components/retejs-basic";
 
 export const IFrame = ({
                            children,
@@ -168,10 +169,10 @@ const App = () => {
             <IFrame width="100%" height="400">
                 <ChatWithTailwind/>
             </IFrame>
-            <h1>Basic Primitives Diagrams for React</h1>
-            <PrimitivesDiagrams/>
+            {/*<h1>Basic Primitives Diagrams for React</h1>*/}
+            {/*<PrimitivesDiagrams/>*/}
             {/*Error after use jsdelivr from esm.sh*/}
-            {/*<h1>Retejs Basic</h1>*/}
+            <h1>Retejs Basic</h1>
             {/*<RetejsBasic/>*/}
             <h1>ReactAutocompleteInput</h1>
             <ReactAutocompleteInput
