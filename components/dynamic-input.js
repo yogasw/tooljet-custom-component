@@ -1,7 +1,7 @@
 import * as React from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
 import TextField from "https://cdn.jsdelivr.net/npm/@mui/material@5.15.0/TextField/+esm";
 import Typography from "https://cdn.jsdelivr.net/npm/@mui/material@5.15.0/Typography/+esm";
-import {FiPlus, FiTrash} from "https://cdn.jsdelivr.net/npm/react-icons/fi/+esm";
+import {FiPlus, FiTrash} from "https://cdn.jsdelivr.net/npm/react-icons@5.4.0/fi/+esm";
 const DynamicInput = ({data, updateData, runQuery}) => {
   const {useEffect} = React;
   const ALPHA_NUMERIC_DASH_REGEX = /^[a-zA-Z0-9\_]+$/;
