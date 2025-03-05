@@ -1,7 +1,12 @@
 import * as React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
-import TextField from 'https://cdn.jsdelivr.net/npm/@mui/material@5.15.0/TextField/+esm';
-import Typography from 'https://cdn.jsdelivr.net/npm/@mui/material@5.15.0/Typography/+esm';
 import {FiPlus, FiTrash} from "https://cdn.jsdelivr.net/npm/react-icons@5.4.0/fi/+esm";
+
+const HeadTailwind = () => (
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    </head>
+);
 
 const DynamicInput = ({data, updateData, runQuery}) => {
     const {useEffect} = React;
@@ -9,10 +14,16 @@ const DynamicInput = ({data, updateData, runQuery}) => {
 
     const inputList = () => {
         if (!data?.inputList) {
-            return [{key: "", value: ""}]
+            return [{key: "test", value: "test"}]
         }
         return data?.inputList
     }
+    const adjustHeightTextarea = (textarea) => {
+        if (textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = `${textarea.scrollHeight}px`;
+        }
+    };
 
     const setInputList = (inputList) => {
         updateData({inputList: inputList})
@@ -52,20 +63,20 @@ const DynamicInput = ({data, updateData, runQuery}) => {
     if (data?.reload === true) return <></>
 
     return (<div>
-        <Typography style={{marginLeft: 10}} variant="caption" display="block" gutterBottom>
+        <HeadTailwind/>
+        <p style={{marginLeft: 10}} className={"italic"}>
             *key only a-z, 0-9 and _
-        </Typography>
+        </p>
         {inputList()?.map((x, i) => {
             return (<div style={stylesDynamicInput.box} key={i}>
-                <TextField
-                    variant="outlined"
-                    required={true}
+                <input
+                    type="text"
                     name="key"
-                    style={{
-                        alignSelf: "center", flex: "1 1 auto"
-                    }}
-                    placeholder="Enter Key"
                     value={x.key}
+                    placeholder="Enter Key"
+                    required
+                    className="input w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    style={{alignSelf: 'center', flex: '1 1 auto'}}
                     onKeyDown={(event) => {
                         if (!ALPHA_NUMERIC_DASH_REGEX.test(event.key)) {
                             event.preventDefault();
@@ -81,17 +92,19 @@ const DynamicInput = ({data, updateData, runQuery}) => {
                     :
                 </a>
 
-                <TextField
-                    style={{
-                        flex: "1 1 auto"
-                    }}
-                    multiline
+                <textarea
                     name="value"
                     placeholder="Enter Value"
-                    variant="outlined"
                     value={x.value}
-                    onChange={(e) => handleInputChange(e, i)}
+                    onChange={(e) => {
+                        handleInputChange(e, i)
+                        adjustHeightTextarea(e.target);
+                    }}
+                    className="textarea w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2
+                focus:ring-blue-500"
+                    style={{flex: '1 1 auto', minHeight: '2.5rem', height: 'auto'}}
                 />
+
                 <div style={stylesDynamicInput.btn_box}>
                     {inputList().length !== 1 && (<FiTrash
                         style={{
@@ -132,8 +145,8 @@ const stylesDynamicInput = {
     }
 };
 export default DynamicInput;
-
-/*//for tooljet
-import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
-const ConnectedComponent = Tooljet.connectComponent(DynamicInput);
-createRoot(document.body).render(<ConnectedComponent/>);*/
+//
+// //for tooljet
+// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
+// const ConnectedComponent = Tooljet.connectComponent(DynamicInput);
+// createRoot(document.body).render(<ConnectedComponent/>);
