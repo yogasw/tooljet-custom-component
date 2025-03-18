@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
 import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.0/+esm";
-import {LuFileJson2} from "https://cdn.jsdelivr.net/npm/react-icons@5.0.0/lu/+esm";
+import {LuFileJson2} from "https://cdn.jsdelivr.net/npm/react-icons@4/lu/+esm";
 const HeadConversationHistory = () => /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("link", {
   href: "https://cdn.jsdelivr.net/npm/tailwindcss@v2.2.19/dist/tailwind.min.css",
   rel: "stylesheet"
