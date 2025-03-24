@@ -1,5 +1,6 @@
-import * as React from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
-import {FiPlus, FiTrash} from "https://cdn.jsdelivr.net/npm/react-icons@5.4.0/fi/+esm";
+import * as React from "https://esm.sh/react@18.2.0";
+import {FiPlus, FiTrash} from "https://cdn.jsdelivr.net/npm/react-icons@5.0.0/fi/+esm";
+console.log(FiPlus);
 const HeadTailwind = () => /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("link", {
   href: "https://cdn.jsdelivr.net/npm/daisyui@5",
   rel: "stylesheet",
