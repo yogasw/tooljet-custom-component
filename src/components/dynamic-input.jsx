@@ -1,6 +1,6 @@
-import * as React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
-import {FiPlus, FiTrash} from "https://cdn.jsdelivr.net/npm/react-icons@5.4.0/fi/+esm";
-
+import * as React from 'https://esm.sh/react@18.2.0';
+import {FiPlus, FiTrash} from "https://cdn.jsdelivr.net/npm/react-icons@5.0.0/fi/+esm";
+console.log(FiPlus)
 const HeadTailwind = () => (
     <head>
         <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
@@ -9,6 +9,7 @@ const HeadTailwind = () => (
 );
 
 const DynamicInput = ({data, updateData, runQuery}) => {
+
     const {useEffect} = React;
     const ALPHA_NUMERIC_DASH_REGEX = /^[a-zA-Z0-9\_]+$/;
 
