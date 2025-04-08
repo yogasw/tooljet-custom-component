@@ -1,5 +1,4 @@
 import * as React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
-import {FiPlus, FiTrash} from "https://cdn.jsdelivr.net/npm/react-icons@5.4.0/fi/+esm";
 
 const HeadTailwind = () => (
     <head>
@@ -150,3 +149,43 @@ export default DynamicInput;
 // import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
 // const ConnectedComponent = Tooljet.connectComponent(DynamicInput);
 // createRoot(document.body).render(<ConnectedComponent/>);
+
+function FiPlus(props) {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            width={props.size || 24}
+            height={props.size || 24}
+            {...props}
+        >
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+        </svg>
+    );
+}
+
+
+function FiTrash({ size = 24, onClick, style }) {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            width={size}
+            height={size}
+            onClick={onClick}
+            style={style}
+        >
+            <polyline points="3 6 5 6 21 6" />
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        </svg>
+    );
+}
