@@ -1,6 +1,24 @@
 import React, {useState, useEffect, useCallback} from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
 import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.0/+esm";
-import {LuFileJson2} from "https://cdn.jsdelivr.net/npm/react-icons@4/lu/+esm";
+const LuFileJson2 = (props) => {
+  return /* @__PURE__ */ React.createElement("svg", {
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    ...props
+  }, /* @__PURE__ */ React.createElement("path", {
+    d: "M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"
+  }), /* @__PURE__ */ React.createElement("path", {
+    d: "M14 2v4a2 2 0 0 0 2 2h4"
+  }), /* @__PURE__ */ React.createElement("path", {
+    d: "M4 12a1 1 0 0 0-1 1v1a1 1 0 0 1-1 1 1 1 0 0 1 1 1v1a1 1 0 0 0 1 1"
+  }), /* @__PURE__ */ React.createElement("path", {
+    d: "M8 18a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1 1 1 0 0 1-1-1v-1a1 1 0 0 0-1-1"
+  }));
+};
 const HeadConversationHistory = () => /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("link", {
   href: "https://cdn.jsdelivr.net/npm/tailwindcss@v2.2.19/dist/tailwind.min.css",
   rel: "stylesheet"
