@@ -68,13 +68,18 @@ export const GenerateListDataFlow = ({parameters}) => {
                 return
             }
         }
-
-
+        let isFallback = intent.isFallback
+        
         const node = {
             id: intentId,
-            data: {label: `${intent.displayName}${history}`, data: intent},
+            data: {label: `${isFallback ? '🔖 ' : ''}${intent.displayName}${history}`, data: intent},
             position,
-            style
+            style: isFallback ? {
+                ...style,
+                borderColor: '#FFE69C',
+                borderWidth: 2,
+                borderStyle: 'solid'
+            } : style
         }
         if (interaction?.first) {
             node.first = true
