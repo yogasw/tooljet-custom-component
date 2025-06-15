@@ -33,7 +33,7 @@ class VisTimeline extends React.Component {
     initData() {
         var groups = new DataSet()
         var items = new DataSet();
-        const {items: _items, groups: _groups, itemGraph2d: _itemGraph2d, groupGraph2d: _groupGraph2d} = this.props?.data ? this.props?.data : {items: [], groups: [], itemGraph2d: [], groupGraph2d: []};
+        const {items: _items, groups: _groups, itemGraph2d: _itemGraph2d, groupGraph2d: _groupGraph2d} = this.props?.data ? this.props?.data : {items: [], groups: []};
         
         if (_groups) {
             _groups.forEach((group) => {
@@ -70,7 +70,7 @@ class VisTimeline extends React.Component {
 
     initTimeline(runQuery) {
         // specify options for Timeline
-        var timelineOptions = {
+        var options = {
             orientation: 'top',
             // maxHeight: 400,
             start: new Date(),
@@ -80,7 +80,6 @@ class VisTimeline extends React.Component {
             tooltip: {
                 followMouse: true,
             },
-            animation: false, // Disable animation for instant movement
         }
 
         // specify options for Graph2d
@@ -93,14 +92,13 @@ class VisTimeline extends React.Component {
             interpolation: true,
             zoomable: true,
             moveable: true,
-            animation: false // Disable animation for instant movement
         }
 
         const {items, groups, graph2dData, graph2dGroups, hasGraph2dData} = this.initData();
         
         // Create Timeline
-        var timelineContainer = document.getElementById('visualization');
-        this.timeline = new Timeline(timelineContainer, items, groups, timelineOptions);
+        var container = document.getElementById('visualization');
+        this.timeline = new Timeline(container, items, groups, options);
         
         // Create Graph2d only if there's data
         if (hasGraph2dData) {
@@ -112,8 +110,7 @@ class VisTimeline extends React.Component {
                 this.timeline.on('rangechange', (properties) => {
                     if (this.graph2d && !this._updating) {
                         this._updating = true;
-                        // Graph2d jumps instantly without animation when timeline is moved
-                        this.graph2d.setWindow(properties.start, properties.end, {animation: false});
+                        this.graph2d.setWindow(properties.start, properties.end);
                         this._updating = false;
                     }
                 });
@@ -121,8 +118,7 @@ class VisTimeline extends React.Component {
                 this.graph2d.on('rangechange', (properties) => {
                     if (this.timeline && !this._updating) {
                         this._updating = true;
-                        // Timeline jumps instantly without animation when graph2d is moved
-                        this.timeline.setWindow(properties.start, properties.end, {animation: false});
+                        this.timeline.setWindow(properties.start, properties.end);
                         this._updating = false;
                     }
                 });
@@ -170,9 +166,5 @@ class VisTimeline extends React.Component {
 
 export default VisTimeline;
 
-// /*for tooljet*/
-// import {createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
-//
 // const ConnectedComponent = Tooljet.connectComponent(VisTimeline);
 // createRoot(document.body).render(<ConnectedComponent/>);
-

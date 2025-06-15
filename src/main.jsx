@@ -232,8 +232,8 @@ const App = () => {
             "buttonText": "Run",
             "items":items,
             "groups":groups,
-            "itemGraph2d": convertedSample2dData, // Use converted sample2d data
-            "groupGraph2d": graph2dGroups,
+            // "itemGraph2d": convertedSample2dData, // Use converted sample2d data
+            // "groupGraph2d": graph2dGroups,
         }
     );
     const updateData = (newData) => {
@@ -247,93 +247,92 @@ const App = () => {
         <div>
             <h1>Vis timline with React</h1>
             <VisTimeline data={data} updateData={updateData} runQuery={runQuery}/>
-            <h2>Input Data:</h2>
+            {/* <h2>Input Data:</h2> */}
 
-            <TextareaAutosize
-                style={{
-                    width: "100%",
-                }}
-                placeholder="Input Data"
-                value={JSON.stringify(data, null, 2)}
-                onChange={(e) => {
-                    //setData()
-                    console.log(e.target.value)
-                    try {
-                        setData(JSON.parse(e.target.value))
-                    } catch (e) {
-                        setData(e.target?.value)
-                    }
-                }}
-            />
+            {/*<TextareaAutosize*/}
+            {/*    style={{*/}
+            {/*        width: "100%",*/}
+            {/*    }}*/}
+            {/*    placeholder="Input Data"*/}
+            {/*    value={JSON.stringify(data, null, 2)}*/}
+            {/*    onChange={(e) => {*/}
+            {/*        //setData()*/}
+            {/*        console.log(e.target.value)*/}
+            {/*        try {*/}
+            {/*            setData(JSON.parse(e.target.value))*/}
+            {/*        } catch (e) {*/}
+            {/*            setData(e.target?.value)*/}
+            {/*        }*/}
+            {/*    }}*/}
+            {/*/>*/}
 
 
-            <h1>Download Zip</h1>
-            <DownloadZip data={data}/>
-            <h1>React Flow</h1>
-            <IFrame width="100%" height="400">
-                {/*<ReactFlowDiagram data={reactFLowData}/>*/}
+            {/*<h1>Download Zip</h1>*/}
+            {/*<DownloadZip data={data}/>*/}
+            {/*<h1>React Flow</h1>*/}
+            {/* <IFrame width="100%" height="400">
                 <ReactFlowDiagram data={GenerateListDataFlow({
-                    parameters: {summaryOnly: true}
+                    parameters: {summaryOnly: false}
                 })}/>
-            </IFrame>
-            <h1>Conversation History</h1>
+            </IFrame> */}
+            {/* <h1>Conversation History</h1>
             <IFrame width="100%" height="400">
                 <ConversationHistory data={ChatHistory}/>
-            </IFrame>
-            <h1>Chat Component with Tailwind Css</h1>
-            <IFrame width="100%" height="400">
-                <ChatWithTailwind/>
-            </IFrame>
-            {/*<h1>Basic Primitives Diagrams for React</h1>*/}
-            {/*<PrimitivesDiagrams/>*/}
-            {/*Error after use jsdelivr from esm.sh*/}
-            <h1>Retejs Basic</h1>
-            {/*<RetejsBasic/>*/}
-            <h1>ReactAutocompleteInput</h1>
-            <ReactAutocompleteInput
-                updateData={(data) => {
-                    updateData(data)
-                }}
-                data={data}
-                runQuery={runQuery}
-            />
-            <h1>Timer</h1>
-            <Timer
-                updateData={updateData}
-                data={data}
-                runQuery={runQuery}
-            />
-            <h1>Example ESM.sh</h1>
-            <EsmSh
-                updateData={updateData}
-                data={data}
-                runQuery={runQuery}
-            />
-            <h2>MyCustomComponent</h2>
+            </IFrame> */}
+            {/*<h1>Chat Component with Tailwind Css</h1>*/}
+            {/*<IFrame width="100%" height="400">*/}
+            {/*    <ChatWithTailwind/>*/}
+            {/*</IFrame>*/}
+            {/*/!*<h1>Basic Primitives Diagrams for React</h1>*!/*/}
+            {/*/!*<PrimitivesDiagrams/>*!/*/}
+            {/*/!*Error after use jsdelivr from esm.sh*!/*/}
+            {/*<h1>Retejs Basic</h1>*/}
+            {/*/!*<RetejsBasic/>*!/*/}
+            {/*<h1>ReactAutocompleteInput</h1>*/}
+            {/*<ReactAutocompleteInput*/}
+            {/*    updateData={(data) => {*/}
+            {/*        updateData(data)*/}
+            {/*    }}*/}
+            {/*    data={data}*/}
+            {/*    runQuery={runQuery}*/}
+            {/*/>*/}
+            {/*<h1>Timer</h1>*/}
+            {/*<Timer*/}
+            {/*    updateData={updateData}*/}
+            {/*    data={data}*/}
+            {/*    runQuery={runQuery}*/}
+            {/*/>*/}
+            {/*<h1>Example ESM.sh</h1>*/}
+            {/*<EsmSh*/}
+            {/*    updateData={updateData}*/}
+            {/*    data={data}*/}
+            {/*    runQuery={runQuery}*/}
+            {/*/>*/}
+            {/*<h2>MyCustomComponent</h2>*/}
 
-            <MyCustomComponent
-                updateData={updateData}
-                data={data}
-                runQuery={runQuery}
-            />
+            {/*<MyCustomComponent*/}
+            {/*    updateData={updateData}*/}
+            {/*    data={data}*/}
+            {/*    runQuery={runQuery}*/}
+            {/*/>*/}
 
-            <h2>Dynamic Input</h2>
+            {/*<h2>Dynamic Input</h2>*/}
 
-            <DynamicInput
-                updateData={(data) => {
-                    updateData(data)
-                }}
-                data={data}
-                runQuery={runQuery}
-            />
+            {/*<DynamicInput*/}
+            {/*    updateData={(data) => {*/}
+            {/*        updateData(data)*/}
+            {/*    }}*/}
+            {/*    data={data}*/}
+            {/*    runQuery={runQuery}*/}
+            {/*/>*/}
 
-            <DateTimeLocal
-                updateData={(data) => {
-                    updateData(data)
-                }}
-                data={data}
-                runQuery={runQuery}
-            />
+            {/*<DateTimeLocal*/}
+            {/*    updateData={(data) => {*/}
+            {/*        updateData(data)*/}
+            {/*    }}*/}
+            {/*    data={data}*/}
+            {/*    runQuery={runQuery}*/}
+            {/*/>*/}
         </div>
     );
 }
