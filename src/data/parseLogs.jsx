@@ -52,7 +52,7 @@ const convertAssignmentLogsTo2dData = (assignmentLogs) => {
         // Add agent to groups if not already present
         if (!groupsMap.has(agentName)) {
             groupsMap.set(agentName, {
-                id: groupsMap.size + 1,
+                id: agentName,
                 content: agentName
             });
         }
