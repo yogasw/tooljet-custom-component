@@ -123,7 +123,38 @@ class VisTimeline extends React.Component {
     const {itemGraph2d, groupGraph2d, title, titleGraph2d} = this.props?.data || {};
     console.log("VisTimeline render", title, titleGraph2d, this.props);
     const hasGraph2dData = itemGraph2d && itemGraph2d.length > 0 || groupGraph2d && groupGraph2d.length > 0;
-    return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", {
+    const LABEL_WIDTH = 100;
+    return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("style", null, `
+                .vis-labelset .vis-label {
+                    max-width: ${LABEL_WIDTH}px;
+                    word-wrap: break-word;
+                }
+                .vis-labelset .vis-label .vis-inner {
+                    white-space: normal;
+                    word-wrap: break-word;
+                    line-height: 1.2;
+                }
+                /* CSS untuk Graph2d left panel labels */
+                #graph2d .vis-panel.vis-left {
+                    width: ${LABEL_WIDTH}px;
+                }
+                #graph2d .vis-panel.vis-left .vis-labelset .vis-label {
+                    max-width: ${LABEL_WIDTH}px;
+                    word-wrap: break-word;
+                }
+                #graph2d .vis-panel.vis-left .vis-labelset .vis-label .vis-inner {
+                    white-space: normal;
+                    word-wrap: break-word;
+                    line-height: 1.2;
+                }
+                /* Hilangkan garis grid horizontal major di Graph2d */
+                #graph2d .vis-grid.vis-horizontal.vis-major {
+                    left: ${LABEL_WIDTH + 20}px !important;
+                }
+                #graph2d .vis-grid.vis-horizontal.vis-minor {
+                    left: ${LABEL_WIDTH + 20}px !important;
+                }
+            `), /* @__PURE__ */ React.createElement("div", {
       style: {marginBottom: "20px"}
     }, title && /* @__PURE__ */ React.createElement("h2", null, title), /* @__PURE__ */ React.createElement("div", {
       id: "visualization"

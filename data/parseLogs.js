@@ -48,7 +48,7 @@ const convertAssignmentLogsTo2dData = (assignmentLogs) => {
         xOffset: 0,
         yOffset: 3
       },
-      title: `${agentName}: ${newCount} assignments`,
+      title: `${agentName}: ${newCount}`,
       content: `${newCount}`
     });
   });
