@@ -21,9 +21,10 @@ function dateConverter(dateString) {
 }
 
 // Function to convert AssignmentLogs to 2D graph data
-const convertAssignmentLogsTo2dData = (assignmentLogs, groups) => {
+const convertAssignmentLogsTo2dData = (assignmentLogs) => {
     const items = [];
     const agentCounts = new Map(); // Track current count per agent
+    const groupsMap = new Map(); // Track groups for 2D graph
 
     // Sort logs by Assigned At time to process chronologically
     const sortedLogs = assignmentLogs.slice().sort((a, b) => {
@@ -36,9 +37,6 @@ const convertAssignmentLogsTo2dData = (assignmentLogs, groups) => {
         return timeA - timeB;
     });
 
-    // Extract group content array untuk cek ada atau tidak
-    const groupContents = groups.map(group => group.content);
-
     sortedLogs.forEach((log) => {
         const agentName = log["Agent Name"];
         const assignedAt = log["Assigned At"];
@@ -46,14 +44,21 @@ const convertAssignmentLogsTo2dData = (assignmentLogs, groups) => {
         // Skip if no agent name
         if (!agentName) return;
 
-        // Cek apakah Agent Name ada di groups content
-        const isAgentInGroups = groupContents.includes(agentName);
-
-        // Kalau tidak ada, skip
-        if (!isAgentInGroups) return;
+        // Filter logic: if filter has content and agent name is not in filter, skip
+        if (filter.length > 0 && !filter.includes(agentName)) {
+            return;
+        }
 
         // Convert time to timestamp (keep as UTC)
         const assignedTime = dateConverter(assignedAt);
+
+        // Add agent to groups if not already present
+        if (!groupsMap.has(agentName)) {
+            groupsMap.set(agentName, {
+                id: groupsMap.size + 1,
+                content: agentName
+            });
+        }
 
         // Increment count untuk agent ini (+1)
         const currentCount = agentCounts.get(agentName) || 0;
@@ -74,6 +79,9 @@ const convertAssignmentLogsTo2dData = (assignmentLogs, groups) => {
             content: `${newCount}`
         });
     });
+
+    // Convert groups map to array
+    const groups = Array.from(groupsMap.values());
 
     console.log("Assignment trend data points:", items.length);
     console.log("Agent counts:", Object.fromEntries(agentCounts));
@@ -244,7 +252,7 @@ function parsingData() {
             })
         }
     }
-    let data2d = convertAssignmentLogsTo2dData(agentAssignmentLogs, groups);
+    let data2d = convertAssignmentLogsTo2dData(agentAssignmentLogs);
 
     return {
         items, groups, listData: agentAvailability,
