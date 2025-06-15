@@ -1,5 +1,5 @@
-import React, {useState} from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
-import {createPortal, createRoot} from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
+import React, { useState } from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+import { createPortal, createRoot } from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
 import DynamicInput from "./components/dynamic-input";
 import DateTimeLocal from "./components/date-time-local";
 import MyCustomComponent from "./components/my-custom-component";
@@ -12,16 +12,17 @@ import PrimitivesDiagrams from "./components/primitives-diagrams";
 import ChatWithTailwind from "./components/chat-with-tailwind";
 import ConversationHistory from "./components/conversation-history";
 import ReactFlowDiagram from "./components/react-flow-diagram";
-import {ChatHistory} from "./data/chat-history";
-import {GenerateListDataFlow} from "./data/generate-list-flow";
+import { ChatHistory } from "./data/chat-history";
+import { GenerateListDataFlow } from "./data/generate-list-flow";
 import DownloadZip from "./components/download-zip";
 import VisTimeline from "./components/vis-timeline";
 import RetejsBasic from "./components/retejs-basic";
+import { ParseSampleData } from './data/parseLogs';
 
 export const IFrame = ({
-                           children,
-                           ...props
-                       }) => {
+    children,
+    ...props
+}) => {
     const [contentRef, setContentRef] = useState(null)
     const mountNode =
         contentRef?.contentWindow?.document?.body
@@ -36,45 +37,44 @@ export const IFrame = ({
         </iframe>
     )
 }
-const position = {x: 0, y: 0};
+const position = { x: 0, y: 0 };
 const edgeType = 'smoothstep';
 const reactFLowData = {
     initialNodes: [
         {
             id: '1',
             // type: 'input',
-            data: {label: 'node 1'},
+            data: { label: 'node 1' },
             position,
         },
         {
             id: '2',
-            data: {label: 'node 2'},
+            data: { label: 'node 2' },
             position,
         },
         {
             id: '2a',
-            data: {label: 'node 2a'},
+            data: { label: 'node 2a' },
             position,
         },
         {
             id: '3',
-            data: {label: 'node 3'},
+            data: { label: 'node 3' },
             position,
         },
 
     ],
     initialEdges: [
-        {id: 'e12', source: '1', target: '2', type: edgeType, animated: true},
-        {id: 'e13', source: '1', target: '3', type: edgeType, animated: true},
-        {id: 'e22a', source: '2', target: '2a', type: edgeType, animated: false},
-        {id: 'e22b', source: '2', target: '2b', type: edgeType, animated: false},
+        { id: 'e12', source: '1', target: '2', type: edgeType, animated: true },
+        { id: 'e13', source: '1', target: '3', type: edgeType, animated: true },
+        { id: 'e22a', source: '2', target: '2a', type: edgeType, animated: false },
+        { id: 'e22b', source: '2', target: '2b', type: edgeType, animated: false },
     ],
     nodeWidth: 172,
     nodeHeight: 36
 }
 
 const App = () => {
-
     // create groups
     var numberOfGroups = 3;
     var groups = []
@@ -88,13 +88,13 @@ const App = () => {
     // create items
     var numberOfItems = 3;
     var items = [];
-    var itemsPerGroup = Math.round(numberOfItems/numberOfGroups);
+    var itemsPerGroup = Math.round(numberOfItems / numberOfGroups);
     for (var truck = 0; truck < numberOfGroups; truck++) {
         var date = new Date();
         for (var order = 0; order < itemsPerGroup; order++) {
-            date.setHours(date.getHours() +  4 * (Math.random() < 0.2));
+            date.setHours(date.getHours() + 4 * (Math.random() < 0.2));
             var start = new Date(date);
-            date.setHours(date.getHours() + 2 + Math.floor(Math.random()*4));
+            date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));
             var end = new Date(date);
             items.push({
                 id: order + itemsPerGroup * truck,
@@ -110,11 +110,11 @@ const App = () => {
     var graph2dItems = [];
     var now = new Date();
     var startTime = new Date(now.getTime() - 5 * 60 * 60 * 1000); // 5 hours ago
-    
+
     // Hardcoded values for sensors
     var sensor1Values = [10, 20, 30, 40, 50];
     var sensor2Values = [10, 20, 30, 40, 50];
-    
+
     // Data per hour (5 data points over 5 hours)
     for (var i = 0; i < 5; i++) {
         var x = new Date(startTime.getTime() + i * 60 * 60 * 1000); // Every hour
@@ -129,23 +129,23 @@ const App = () => {
             group: 'sensor2'
         });
     }
-    
+
     // Sample 2D data - 10 raw data points with 2 arrays of objects
     const sample2d = {
         sensor1: [],
         sensor2: []
     };
-    
+
     const baseTime = new Date();
     for (let i = 0; i < 10; i++) {
         const currentTime = new Date(baseTime.getTime() + i * 60 * 1000); // Add i minutes
-        
+
         // Array 1 - Sensor 1 data
         sample2d.sensor1.push({
             date: currentTime,
             total: (i + 1) * 2 // 2, 4, 6, 8, 10, 12, 14, 16, 18, 20
         });
-        
+
         // Array 2 - Sensor 2 data  
         sample2d.sensor2.push({
             date: currentTime,
@@ -156,7 +156,7 @@ const App = () => {
     // Converter function to format sample2d for vis timeline
     const convertSample2dForTimeline = (data) => {
         const items = [];
-        
+
         // Convert sensor1 data
         data.sensor1.forEach((item, index) => {
             items.push({
@@ -172,7 +172,7 @@ const App = () => {
                 content: `${item.total}` // Point label
             });
         });
-        
+
         // Convert sensor2 data
         data.sensor2.forEach((item, index) => {
             items.push({
@@ -188,65 +188,46 @@ const App = () => {
                 content: `${item.total}` // Point label
             });
         });
-        
+
         console.log("Sensor1 values:", data.sensor1.map(item => item.total));
         console.log("Sensor2 values:", data.sensor2.map(item => item.total));
-        
+
         return items;
     };
 
-    // Execute the converter function
-    const convertedSample2dData = convertSample2dForTimeline(sample2d);
-
-    var graph2dGroups = [
-        {
-            id: 'sensor1',
-            content: 'Temperature (°C)',
-            options: {
-                drawPoints: true,
-                shaded: {
-                    orientation: 'bottom'
-                }
-            }
-        },
-        {
-            id: 'sensor2',
-            content: 'Humidity (%)',
-            options: {
-                drawPoints: true,
-                style: 'line'
-            }
-        }
-    ];
-
+    let newData = ParseSampleData();
     // const [data, setData] = React.useState();
     const [data, setData] = React.useState(
         {
             "value": "Example |=\"{{B}}\"",
             "list": [
-                {"id": "A", "display": "A"},
-                {"id": "B", "display": "B"},
-                {"id": "C", "display": "C"},
-                {"id": "D", "display": "D"}
+                { "id": "A", "display": "A" },
+                { "id": "B", "display": "B" },
+                { "id": "C", "display": "C" },
+                { "id": "D", "display": "D" }
             ],
             "buttonText": "Run",
-            "items":items,
-            "groups":groups,
-            // "itemGraph2d": convertedSample2dData, // Use converted sample2d data
-            // "groupGraph2d": graph2dGroups,
+            "items": newData.items,
+            "groups": newData.groups,
+            "groupGraph2d": newData.groupGraph2d,
+            "itemGraph2d": newData.itemGraph2d,
+            "title": "Vis Timeline Example",
+            "titleGraph2d": "Graph2d Example",
+
         }
     );
     const updateData = (newData) => {
-        setData({...data, ...newData});
+        setData({ ...data, ...newData });
         console.log("update data", data)
     }
     const runQuery = (query) => {
         console.log("run query", query)
     }
+
     return (
         <div>
-            <h1>Vis timline with React</h1>
-            <VisTimeline data={data} updateData={updateData} runQuery={runQuery}/>
+            <h1>Vis timeline with React</h1>
+            <VisTimeline data={data} updateData={updateData} runQuery={runQuery} />
             {/* <h2>Input Data:</h2> */}
 
             {/*<TextareaAutosize*/}
@@ -340,6 +321,6 @@ const App = () => {
 
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
-root.render(<App tab="home"/>);
+root.render(<App tab="home" />);
 
 // ReactDOM.render(<App/>, document.getElementById("root"));

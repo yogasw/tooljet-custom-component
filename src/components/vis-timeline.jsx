@@ -152,8 +152,8 @@ class VisTimeline extends React.Component {
     }
 
     render() {
-        const { itemGraph2d, groupGraph2d } = this.props?.data || {};
-        const { title, titleGraph2d } = this.props;
+        const { itemGraph2d, groupGraph2d, title, titleGraph2d} = this.props?.data || {};
+        console.log('VisTimeline render', title, titleGraph2d, this.props);
         const hasGraph2dData = (itemGraph2d && itemGraph2d.length > 0) || (groupGraph2d && groupGraph2d.length > 0);
 
         return <div>
