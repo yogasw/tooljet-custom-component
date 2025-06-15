@@ -166,6 +166,7 @@ export const ListIntents = [
     name: "projects/ariokiasisten/locations/global/agent/intents/6c6a18cf-495c-42d8-93f2-24dc33222751",
     displayName: "Halo",
     priority: 5e5,
+    isFallback: true,
     mlEnabled: true,
     outputContexts: [
       {

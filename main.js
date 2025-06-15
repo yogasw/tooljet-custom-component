@@ -16,6 +16,7 @@ import {GenerateListDataFlow} from "./data/generate-list-flow.js";
 import DownloadZip from "./components/download-zip.js";
 import VisTimeline from "./components/vis-timeline.js";
 import RetejsBasic from "./components/retejs-basic.js";
+import {ParseSampleData} from "./data/parseLogs.js";
 export const IFrame = ({
   children,
   ...props
@@ -97,6 +98,75 @@ const App = () => {
       });
     }
   }
+  var graph2dItems = [];
+  var now = new Date();
+  var startTime = new Date(now.getTime() - 5 * 60 * 60 * 1e3);
+  var sensor1Values = [10, 20, 30, 40, 50];
+  var sensor2Values = [10, 20, 30, 40, 50];
+  for (var i = 0; i < 5; i++) {
+    var x = new Date(startTime.getTime() + i * 60 * 60 * 1e3);
+    graph2dItems.push({
+      x,
+      y: sensor1Values[i],
+      group: "sensor1"
+    });
+    graph2dItems.push({
+      x,
+      y: sensor2Values[i],
+      group: "sensor2"
+    });
+  }
+  const sample2d = {
+    sensor1: [],
+    sensor2: []
+  };
+  const baseTime = new Date();
+  for (let i2 = 0; i2 < 10; i2++) {
+    const currentTime = new Date(baseTime.getTime() + i2 * 60 * 1e3);
+    sample2d.sensor1.push({
+      date: currentTime,
+      total: (i2 + 1) * 2
+    });
+    sample2d.sensor2.push({
+      date: currentTime,
+      total: (i2 + 1) * 3
+    });
+  }
+  const convertSample2dForTimeline = (data2) => {
+    const items2 = [];
+    data2.sensor1.forEach((item, index) => {
+      items2.push({
+        x: item.date,
+        y: item.total,
+        group: "sensor1",
+        label: {
+          content: `${item.total}`,
+          xOffset: 0,
+          yOffset: 3
+        },
+        title: `Sensor 1: ${item.total}`,
+        content: `${item.total}`
+      });
+    });
+    data2.sensor2.forEach((item, index) => {
+      items2.push({
+        x: item.date,
+        y: item.total,
+        group: "sensor2",
+        label: {
+          content: `${item.total}`,
+          xOffset: 0,
+          yOffset: 3
+        },
+        title: `Sensor 2: ${item.total}`,
+        content: `${item.total}`
+      });
+    });
+    console.log("Sensor1 values:", data2.sensor1.map((item) => item.total));
+    console.log("Sensor2 values:", data2.sensor2.map((item) => item.total));
+    return items2;
+  };
+  let newData = ParseSampleData();
   const [data, setData] = React.useState({
     value: 'Example |="{{B}}"',
     list: [
@@ -106,80 +176,23 @@ const App = () => {
       {id: "D", display: "D"}
     ],
     buttonText: "Run",
-    items,
-    groups
+    items: newData.items,
+    groups: newData.groups,
+    groupGraph2d: newData.groupGraph2d,
+    itemGraph2d: newData.itemGraph2d,
+    title: "Vis Timeline Example",
+    titleGraph2d: "Graph2d Example"
   });
-  const updateData = (newData) => {
-    setData({...data, ...newData});
+  const updateData = (newData2) => {
+    setData({...data, ...newData2});
     console.log("update data", data);
   };
   const runQuery = (query) => {
     console.log("run query", query);
   };
-  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "Vis timline with React"), /* @__PURE__ */ React.createElement(VisTimeline, {
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", null, "Vis timeline with React"), /* @__PURE__ */ React.createElement(VisTimeline, {
     data,
     updateData,
-    runQuery
-  }), /* @__PURE__ */ React.createElement("h2", null, "Input Data:"), /* @__PURE__ */ React.createElement(TextareaAutosize, {
-    style: {
-      width: "100%"
-    },
-    placeholder: "Input Data",
-    value: JSON.stringify(data, null, 2),
-    onChange: (e) => {
-      console.log(e.target.value);
-      try {
-        setData(JSON.parse(e.target.value));
-      } catch (e2) {
-        setData(e2.target?.value);
-      }
-    }
-  }), /* @__PURE__ */ React.createElement("h1", null, "Download Zip"), /* @__PURE__ */ React.createElement(DownloadZip, {
-    data
-  }), /* @__PURE__ */ React.createElement("h1", null, "React Flow"), /* @__PURE__ */ React.createElement(IFrame, {
-    width: "100%",
-    height: "400"
-  }, /* @__PURE__ */ React.createElement(ReactFlowDiagram, {
-    data: GenerateListDataFlow({
-      parameters: {summaryOnly: true}
-    })
-  })), /* @__PURE__ */ React.createElement("h1", null, "Conversation History"), /* @__PURE__ */ React.createElement(IFrame, {
-    width: "100%",
-    height: "400"
-  }, /* @__PURE__ */ React.createElement(ConversationHistory, {
-    data: ChatHistory
-  })), /* @__PURE__ */ React.createElement("h1", null, "Chat Component with Tailwind Css"), /* @__PURE__ */ React.createElement(IFrame, {
-    width: "100%",
-    height: "400"
-  }, /* @__PURE__ */ React.createElement(ChatWithTailwind, null)), /* @__PURE__ */ React.createElement("h1", null, "Retejs Basic"), /* @__PURE__ */ React.createElement("h1", null, "ReactAutocompleteInput"), /* @__PURE__ */ React.createElement(ReactAutocompleteInput, {
-    updateData: (data2) => {
-      updateData(data2);
-    },
-    data,
-    runQuery
-  }), /* @__PURE__ */ React.createElement("h1", null, "Timer"), /* @__PURE__ */ React.createElement(Timer, {
-    updateData,
-    data,
-    runQuery
-  }), /* @__PURE__ */ React.createElement("h1", null, "Example ESM.sh"), /* @__PURE__ */ React.createElement(EsmSh, {
-    updateData,
-    data,
-    runQuery
-  }), /* @__PURE__ */ React.createElement("h2", null, "MyCustomComponent"), /* @__PURE__ */ React.createElement(MyCustomComponent, {
-    updateData,
-    data,
-    runQuery
-  }), /* @__PURE__ */ React.createElement("h2", null, "Dynamic Input"), /* @__PURE__ */ React.createElement(DynamicInput, {
-    updateData: (data2) => {
-      updateData(data2);
-    },
-    data,
-    runQuery
-  }), /* @__PURE__ */ React.createElement(DateTimeLocal, {
-    updateData: (data2) => {
-      updateData(data2);
-    },
-    data,
     runQuery
   }));
 };
