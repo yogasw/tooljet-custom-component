@@ -29,9 +29,6 @@ const convertAssignmentLogsTo2dData = (assignmentLogs) => {
     // Sort logs by Assigned At time to process chronologically
     const sortedLogs = assignmentLogs.slice().sort((a, b) => {
         const timeA = dateConverter(a["Assigned At"]);
-        if (a["Room ID"] == "325281748") {
-            console.log(a["Room ID"], a["Assigned At"], timeA);
-        }
 
         const timeB = dateConverter(b["Assigned At"]);
         return timeA - timeB;
