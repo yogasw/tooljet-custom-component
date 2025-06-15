@@ -155,8 +155,35 @@ class VisTimeline extends React.Component {
         const { itemGraph2d, groupGraph2d, title, titleGraph2d} = this.props?.data || {};
         console.log('VisTimeline render', title, titleGraph2d, this.props);
         const hasGraph2dData = (itemGraph2d && itemGraph2d.length > 0) || (groupGraph2d && groupGraph2d.length > 0);
+        
+        // Konstanta untuk ukuran label
+        const LABEL_WIDTH = 100; // px
 
         return <div>
+            <style>{`
+                .vis-labelset .vis-label {
+                    max-width: ${LABEL_WIDTH}px;
+                    word-wrap: break-word;
+                }
+                .vis-labelset .vis-label .vis-inner {
+                    white-space: normal;
+                    word-wrap: break-word;
+                    line-height: 1.2;
+                }
+                /* CSS untuk Graph2d left panel labels */
+                #graph2d .vis-panel.vis-left {
+                    width: ${LABEL_WIDTH}px;
+                }
+                #graph2d .vis-panel.vis-left .vis-labelset .vis-label {
+                    max-width: ${LABEL_WIDTH}px;
+                    word-wrap: break-word;
+                }
+                #graph2d .vis-panel.vis-left .vis-labelset .vis-label .vis-inner {
+                    white-space: normal;
+                    word-wrap: break-word;
+                    line-height: 1.2;
+                }
+            `}</style>
             <div style={{ marginBottom: '20px' }}>
                 {title && <h2>{title}</h2>}
                 <div id="visualization"></div>
