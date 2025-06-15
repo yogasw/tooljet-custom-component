@@ -12,27 +12,30 @@ function dateConverter(dateString) {
   const localDate = new Date(year, month - 1, day, hour, minute, second);
   return localDate;
 }
-const convertAssignmentLogsTo2dData = (assignmentLogs, groups) => {
+const convertAssignmentLogsTo2dData = (assignmentLogs) => {
   const items = [];
   const agentCounts = new Map();
+  const groupsMap = new Map();
   const sortedLogs = assignmentLogs.slice().sort((a, b) => {
     const timeA = dateConverter(a["Assigned At"]);
-    if (a["Room ID"] == "325281748") {
-      console.log(a["Room ID"], a["Assigned At"], timeA);
-    }
     const timeB = dateConverter(b["Assigned At"]);
     return timeA - timeB;
   });
-  const groupContents = groups.map((group) => group.content);
   sortedLogs.forEach((log) => {
     const agentName = log["Agent Name"];
     const assignedAt = log["Assigned At"];
     if (!agentName)
       return;
-    const isAgentInGroups = groupContents.includes(agentName);
-    if (!isAgentInGroups)
+    if (filter.length > 0 && !filter.includes(agentName)) {
       return;
+    }
     const assignedTime = dateConverter(assignedAt);
+    if (!groupsMap.has(agentName)) {
+      groupsMap.set(agentName, {
+        id: groupsMap.size + 1,
+        content: agentName
+      });
+    }
     const currentCount = agentCounts.get(agentName) || 0;
     const newCount = currentCount + 1;
     agentCounts.set(agentName, newCount);
@@ -49,6 +52,7 @@ const convertAssignmentLogsTo2dData = (assignmentLogs, groups) => {
       content: `${newCount}`
     });
   });
+  const groups = Array.from(groupsMap.values());
   console.log("Assignment trend data points:", items.length);
   console.log("Agent counts:", Object.fromEntries(agentCounts));
   return {
@@ -209,7 +213,7 @@ function parsingData() {
       });
     }
   }
-  let data2d = convertAssignmentLogsTo2dData(agentAssignmentLogs, groups);
+  let data2d = convertAssignmentLogsTo2dData(agentAssignmentLogs);
   return {
     items,
     groups,
