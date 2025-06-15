@@ -106,6 +106,119 @@ const App = () => {
         }
     }
 
+    // Sample data for Graph2d - Hardcoded values per hour and 5 hours
+    var graph2dItems = [];
+    var now = new Date();
+    var startTime = new Date(now.getTime() - 5 * 60 * 60 * 1000); // 5 hours ago
+    
+    // Hardcoded values for sensors
+    var sensor1Values = [10, 20, 30, 40, 50];
+    var sensor2Values = [10, 20, 30, 40, 50];
+    
+    // Data per hour (5 data points over 5 hours)
+    for (var i = 0; i < 5; i++) {
+        var x = new Date(startTime.getTime() + i * 60 * 60 * 1000); // Every hour
+        graph2dItems.push({
+            x: x,
+            y: sensor1Values[i],
+            group: 'sensor1'
+        });
+        graph2dItems.push({
+            x: x,
+            y: sensor2Values[i],
+            group: 'sensor2'
+        });
+    }
+    
+    // Sample 2D data - 10 raw data points with 2 arrays of objects
+    const sample2d = {
+        sensor1: [],
+        sensor2: []
+    };
+    
+    const baseTime = new Date();
+    for (let i = 0; i < 10; i++) {
+        const currentTime = new Date(baseTime.getTime() + i * 60 * 1000); // Add i minutes
+        
+        // Array 1 - Sensor 1 data
+        sample2d.sensor1.push({
+            date: currentTime,
+            total: (i + 1) * 2 // 2, 4, 6, 8, 10, 12, 14, 16, 18, 20
+        });
+        
+        // Array 2 - Sensor 2 data  
+        sample2d.sensor2.push({
+            date: currentTime,
+            total: (i + 1) * 3 // 3, 6, 9, 12, 15, 18, 21, 24, 27, 30
+        });
+    }
+
+    // Converter function to format sample2d for vis timeline
+    const convertSample2dForTimeline = (data) => {
+        const items = [];
+        
+        // Convert sensor1 data
+        data.sensor1.forEach((item, index) => {
+            items.push({
+                x: item.date,
+                y: item.total,
+                group: 'sensor1',
+                label: {
+                    content: `${item.total}`,
+                    xOffset: 0,
+                    yOffset: 3 // Center text vertically in the dot
+                },
+                title: `Sensor 1: ${item.total}`, // Tooltip text
+                content: `${item.total}` // Point label
+            });
+        });
+        
+        // Convert sensor2 data
+        data.sensor2.forEach((item, index) => {
+            items.push({
+                x: item.date,
+                y: item.total,
+                group: 'sensor2',
+                label: {
+                    content: `${item.total}`,
+                    xOffset: 0,
+                    yOffset: 3 // Center text vertically in the dot
+                },
+                title: `Sensor 2: ${item.total}`, // Tooltip text
+                content: `${item.total}` // Point label
+            });
+        });
+        
+        console.log("Sensor1 values:", data.sensor1.map(item => item.total));
+        console.log("Sensor2 values:", data.sensor2.map(item => item.total));
+        
+        return items;
+    };
+
+    // Execute the converter function
+    const convertedSample2dData = convertSample2dForTimeline(sample2d);
+
+    var graph2dGroups = [
+        {
+            id: 'sensor1',
+            content: 'Temperature (°C)',
+            options: {
+                drawPoints: true,
+                shaded: {
+                    orientation: 'bottom'
+                }
+            }
+        },
+        {
+            id: 'sensor2',
+            content: 'Humidity (%)',
+            options: {
+                drawPoints: true,
+                style: 'line'
+            }
+        }
+    ];
+
     // const [data, setData] = React.useState();
     const [data, setData] = React.useState(
         {
@@ -119,6 +232,8 @@ const App = () => {
             "buttonText": "Run",
             "items":items,
             "groups":groups,
+            "itemGraph2d": convertedSample2dData, // Use converted sample2d data
+            "groupGraph2d": graph2dGroups,
         }
     );
     const updateData = (newData) => {
