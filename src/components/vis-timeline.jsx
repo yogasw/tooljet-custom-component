@@ -80,6 +80,7 @@ class VisTimeline extends React.Component {
             tooltip: {
                 followMouse: true,
             },
+            animation: false,
         }
 
         // specify options for Graph2d
@@ -92,6 +93,7 @@ class VisTimeline extends React.Component {
             interpolation: true,
             zoomable: true,
             moveable: true,
+            animation: false,
         }
 
         const {items, groups, graph2dData, graph2dGroups, hasGraph2dData} = this.initData();
@@ -110,7 +112,7 @@ class VisTimeline extends React.Component {
                 this.timeline.on('rangechange', (properties) => {
                     if (this.graph2d && !this._updating) {
                         this._updating = true;
-                        this.graph2d.setWindow(properties.start, properties.end);
+                        this.graph2d.setWindow(properties.start, properties.end, {animation: false});
                         this._updating = false;
                     }
                 });
@@ -118,7 +120,7 @@ class VisTimeline extends React.Component {
                 this.graph2d.on('rangechange', (properties) => {
                     if (this.timeline && !this._updating) {
                         this._updating = true;
-                        this.timeline.setWindow(properties.start, properties.end);
+                        this.timeline.setWindow(properties.start, properties.end, {animation: false});
                         this._updating = false;
                     }
                 });
