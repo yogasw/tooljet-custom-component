@@ -32,7 +32,7 @@ const convertAssignmentLogsTo2dData = (assignmentLogs) => {
     const assignedTime = dateConverter(assignedAt);
     if (!groupsMap.has(agentName)) {
       groupsMap.set(agentName, {
-        id: groupsMap.size + 1,
+        id: agentName,
         content: agentName
       });
     }
