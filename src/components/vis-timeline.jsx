@@ -152,10 +152,10 @@ class VisTimeline extends React.Component {
     }
 
     render() {
-        const { itemGraph2d, groupGraph2d, title, titleGraph2d} = this.props?.data || {};
+        const { itemGraph2d, groupGraph2d, title, titleGraph2d } = this.props?.data || {};
         console.log('VisTimeline render', title, titleGraph2d, this.props);
         const hasGraph2dData = (itemGraph2d && itemGraph2d.length > 0) || (groupGraph2d && groupGraph2d.length > 0);
-        
+
         // Konstanta untuk ukuran label
         const LABEL_WIDTH = 100; // px
 
@@ -182,6 +182,13 @@ class VisTimeline extends React.Component {
                     white-space: normal;
                     word-wrap: break-word;
                     line-height: 1.2;
+                }
+                /* Hilangkan garis grid horizontal major di Graph2d */
+                #graph2d .vis-grid.vis-horizontal.vis-major {
+                    left: ${LABEL_WIDTH + 20}px !important;
+                }
+                #graph2d .vis-grid.vis-horizontal.vis-minor {
+                    left: ${LABEL_WIDTH + 20}px !important;
                 }
             `}</style>
             <div style={{ marginBottom: '20px' }}>
