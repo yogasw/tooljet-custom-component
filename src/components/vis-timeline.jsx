@@ -47,23 +47,25 @@ class VisTimeline extends React.Component {
             })
         }
 
-        // Graph2d data from props
+        // Graph2d data from props - check if data exists
         var graph2dData = new DataSet();
         var graph2dGroups = new DataSet();
+        var hasGraph2dData = false;
         
-        if (_itemGraph2d) {
+        if (_itemGraph2d && _itemGraph2d.length > 0) {
             _itemGraph2d.forEach((item) => {
-                graph2dData.add(item)
-            })
+                graph2dData.add(item);
+            });
+            hasGraph2dData = true;
         }
-
-        if (_groupGraph2d) {
+        
+        if (_groupGraph2d && _groupGraph2d.length > 0) {
             _groupGraph2d.forEach((group) => {
-                graph2dGroups.add(group)
-            })
+                graph2dGroups.add(group);
+            });
         }
 
-        return {items, groups, graph2dData, graph2dGroups}
+        return {items, groups, graph2dData, graph2dGroups, hasGraph2dData};
     }
 
     initTimeline(runQuery) {
@@ -94,34 +96,38 @@ class VisTimeline extends React.Component {
             animation: false // Disable animation for instant movement
         }
 
-        const {items, groups, graph2dData, graph2dGroups} = this.initData();
+        const {items, groups, graph2dData, graph2dGroups, hasGraph2dData} = this.initData();
         
         // Create Timeline
         var timelineContainer = document.getElementById('visualization');
         this.timeline = new Timeline(timelineContainer, items, groups, timelineOptions);
         
-        // Create Graph2d
-        var graph2dContainer = document.getElementById('graph2d');
-        this.graph2d = new Graph2d(graph2dContainer, graph2dData, graph2dGroups, graph2dOptions);
+        // Create Graph2d only if there's data
+        if (hasGraph2dData) {
+            var graph2dContainer = document.getElementById('graph2d');
+            if (graph2dContainer) {
+                this.graph2d = new Graph2d(graph2dContainer, graph2dData, graph2dGroups, graph2dOptions);
 
-        // Synchronize range changes
-        this.timeline.on('rangechange', (properties) => {
-            if (this.graph2d && !this._updating) {
-                this._updating = true;
-                // Graph2d jumps instantly without animation when timeline is moved
-                this.graph2d.setWindow(properties.start, properties.end, {animation: false});
-                this._updating = false;
-            }
-        });
+                // Synchronize range changes only if graph2d exists
+                this.timeline.on('rangechange', (properties) => {
+                    if (this.graph2d && !this._updating) {
+                        this._updating = true;
+                        // Graph2d jumps instantly without animation when timeline is moved
+                        this.graph2d.setWindow(properties.start, properties.end, {animation: false});
+                        this._updating = false;
+                    }
+                });
 
-        this.graph2d.on('rangechange', (properties) => {
-            if (this.timeline && !this._updating) {
-                this._updating = true;
-                // Timeline jumps instantly without animation when graph2d is moved
-                this.timeline.setWindow(properties.start, properties.end, {animation: false});
-                this._updating = false;
+                this.graph2d.on('rangechange', (properties) => {
+                    if (this.timeline && !this._updating) {
+                        this._updating = true;
+                        // Timeline jumps instantly without animation when graph2d is moved
+                        this.timeline.setWindow(properties.start, properties.end, {animation: false});
+                        this._updating = false;
+                    }
+                });
             }
-        });
+        }
 
         this.timeline.on('doubleClick', onDoubleClick);
 
@@ -142,15 +148,20 @@ class VisTimeline extends React.Component {
     componentDidUpdate() {
         if (this.timeline) this.timeline.destroy();
         if (this.graph2d) this.graph2d.destroy();
+        // Reset graph2d reference
+        this.graph2d = null;
         return this.initTimeline(this.props.runQuery);
     }
 
     render() {
+        const {itemGraph2d, groupGraph2d} = this.props?.data || {};
+        const hasGraph2dData = (itemGraph2d && itemGraph2d.length > 0) || (groupGraph2d && groupGraph2d.length > 0);
+        
         return <div>
             <div style={{marginBottom: '20px'}}>
                 <div id="visualization"></div>
             </div>
-            <div>
+            <div style={{display: hasGraph2dData ? 'block' : 'none'}}>
                 <div id="graph2d"></div>
             </div>
         </div>
